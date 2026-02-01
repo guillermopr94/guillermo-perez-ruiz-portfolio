@@ -44,15 +44,17 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "MAHLE SmartBike Systems",
     period: "2021 – Present",
     location: "Remote",
-    description: "Technical owner of the company’s digital platform. Led the transformation of a legacy monolithic application into a modern, scalable cloud architecture.",
+    description: "Technical owner of the company’s digital platform and internal systems. Leading the end-to-end modernization of a high-traffic ecosystem used by thousands of users.",
     achievements: [
       "Orchestrated team workflows and architectural decisions for a squad of 4 Full-Stack engineers.",
-      "Migrated infrastructure to AWS ECS (Fargate) with auto-scaling, moving frontend to S3/CloudFront.",
-      "Designed automated CI/CD pipelines incorporating Snyk, SonarQube, and E2E testing.",
-      "Decoupled monolithic database: raw data to S3, sessions to Redis, volatile data to NoSQL.",
-      "Developed an Electron desktop app for manufacturing lines integrating with CAN bus protocols."
+      "Modernized a large-scale React/Express legacy platform, eliminating critical technical debt and improving observability.",
+      "Full dockerization of frontend/backend and migration to AWS ECS (Fargate) with auto-scaling and S3/CloudFront orchestration.",
+      "Implemented advanced CI/CD pipelines with automated release management, deployment gates, and integrated QA (Smoke tests, E2E).",
+      "Progressively migrated legacy class components to React Hooks and TypeScript, ensuring 24/7 production stability.",
+      "Decoupled monolithic data architecture: migrated geospatial locations to S3, sessions to Redis, and volatile data to NoSQL.",
+      "Architected and maintain an Electron desktop app for manufacturing EOL processes, integrating low-level CAN bus/UDS protocols."
     ],
-    techStack: ["React", "Node.js", "AWS ECS", "TypeScript", "Redis", "Docker", "Electron"]
+    techStack: ["React", "Node.js", "AWS (ECS/S3/CloudFront)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus"]
   },
   {
     id: "izertis",
@@ -60,14 +62,14 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "Izertis S.A. (Client: Inditex)",
     period: "2020 – 2023",
     location: "Remote",
-    description: "Core member of a cross-functional team defining global quality standards for one of the world's largest fashion retailers.",
+    description: "Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global repository landscape.",
     achievements: [
-      "Designed global QA/DevOps strategies and mass-analysis scripts for thousands of repositories.",
-      "Led the modernization of the internal 'Yellow Pages' discovery platform (Spring Boot + React).",
-      "Standardized quality gates (SonarQube, Jacoco) across the organization.",
-      "Migrated pipelines from Bamboo to GitHub Actions."
+      "Designed and evolved global QA/DevOps strategies, automating CI/CD changes across thousands of repositories.",
+      "Developed mass-analysis scripts and centralized health metrics in Grafana to support risk-based prioritization.",
+      "Standardized quality gates (SonarQube, Snyk, Jacoco) and migrated pipelines from Bamboo to GitHub Actions.",
+      "Technical Lead for the internal Application Discovery Platform ('Yellow Pages'), coordinating full-stack development with Spring Boot and React."
     ],
-    techStack: ["React", "Spring Boot", "GitHub Actions", "Grafana", "Go", "Java"]
+    techStack: ["React", "Spring Boot", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"]
   },
   {
     id: "cognizant",
@@ -75,14 +77,14 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "Cognizant Technology Solutions",
     period: "2018 – 2020",
     location: "International / Valladolid",
-    description: "Full-stack development for a major Belgian digital banking platform in a microservices environment.",
+    description: "Full-stack development for KBC Bank (Belgium) in a microservices environment, assuming high technical responsibility within distributed international teams.",
     achievements: [
-      "Migrated legacy AngularJS components to modern Angular.",
-      "Developed new microservices using Spring Boot.",
-      "Collaborated in an international 100% English-speaking agile environment.",
-      "Implemented CI/CD integration using Jenkins."
+      "Migrated legacy AngularJS components to modern Angular while maintaining banking platform integrity.",
+      "Developed high-criticality microservices from scratch using Spring Boot.",
+      "Worked in a 100% English-speaking environment collaborating with teams in Belgium, India, and Czech Republic.",
+      "Integrated automated testing and CI/CD flows using Jenkins and SonarQube."
     ],
-    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum"]
+    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala"]
   }
 ];
 
@@ -90,27 +92,27 @@ export const SKILLS_DATA: SkillCategory[] = [
   {
     name: "Frontend",
     icon: Code2,
-    skills: ["React (Hooks, Context)", "TypeScript", "Tailwind CSS", "Next.js", "Angular", "Electron", "HTML5/SASS"]
+    skills: ["React (Hooks, Context)", "TypeScript", "Tailwind CSS", "Next.js", "Electron", "HTML5/SASS"]
   },
   {
     name: "Backend",
     icon: Server,
-    skills: ["Node.js", "Express", "Java (Spring Boot)", "Go (Tooling)", "REST APIs", "Microservices"]
+    skills: ["Node.js (Express/NestJS)", "Java (Spring Boot)", "Go (Tooling)", "REST APIs", "Microservices"]
   },
   {
     name: "DevOps & Cloud",
     icon: Cloud,
-    skills: ["AWS (ECS, Fargate, S3)", "Docker", "GitHub Actions", "Jenkins", "Terraform", "SonarQube"]
+    skills: ["AWS (ECS, Fargate, S3, CloudFront)", "Docker", "CI/CD (GitHub Actions, Jenkins)", "Infrastructure as Code", "Monitoring (Grafana, CloudWatch)"]
   },
   {
     name: "Data & Persistence",
     icon: Database,
-    skills: ["PostgreSQL", "MongoDB", "Redis", "NoSQL", "Geospatial Data"]
+    skills: ["PostgreSQL", "MongoDB", "Redis", "NoSQL", "Geospatial Data", "AWS Secrets Manager"]
   },
   {
     name: "Architecture & Soft Skills",
     icon: Layers,
-    skills: ["System Design", "Legacy Modernization", "Tech Leadership", "Agile/SAFe", "English (C1)", "Mentoring"]
+    skills: ["Legacy Modernization", "Tech Leadership", "System Design", "Agile (SAFe/Scrum)", "Mentoring", "Professional English (C1)"]
   }
 ];
 
@@ -126,20 +128,20 @@ export const PROJECTS_DATA: ProjectItem[] = [
     status: "Live"
   },
   {
-    id: "artisan-ecommerce",
-    title: "Artisan Crafts E-commerce",
-    description: "End-to-end development of an e-commerce platform for artisan crafts. Handled frontend design, deployment pipelines, and ongoing maintenance to support a small business.",
-    tags: ["React", "UX/UI", "Payment Integration", "SEO", "Maintenance"],
+    id: "crearesarte",
+    title: "Crearte es Arte",
+    description: "End-to-end development of a professional e-commerce platform for artisan crafts. Managed frontend design, CI/CD deployment on Vercel, and ongoing system maintenance.",
+    tags: ["React", "Vercel", "E-commerce", "SEO", "Maintenance"],
     image: "https://picsum.photos/id/312/800/600",
     status: "Live"
   },
   {
-    id: "slay-proto",
-    title: "Deckbuilder Roguelike Prototype",
-    description: "A Slay the Spire-inspired game prototype featuring procedural world generation and AI-generated cards, defined via JSON configuration.",
-    tags: ["Game Dev", "Procedural Gen", "JSON Architecture", "TypeScript"],
+    id: "galactic-conquest",
+    title: "Galactic Conquest",
+    description: "A procedural space-themed deckbuilder roguelike. Leveraging AI APIs for dynamic card generation and world-building (Current project).",
+    tags: ["React 19", "Vite", "Lucide", "AI Integration", "TypeScript"],
     image: "https://picsum.photos/id/235/800/600",
-    status: "Prototype"
+    status: "In Development"
   },
   {
     id: "mindfulness-app",
