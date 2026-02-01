@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            href="https://github.com/guillermo94"
+            href="https://github.com/guillermopr94"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 text-accent hover:text-white transition-colors mt-4 md:mt-0"

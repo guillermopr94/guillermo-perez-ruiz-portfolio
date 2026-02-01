@@ -23,7 +23,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: "GitHub",
-    url: "https://github.com/guillermo94",
+    url: "https://github.com/guillermopr94",
     icon: Github
   },
   {

@@ -2,7 +2,7 @@
 **Tech Lead (Hands-On) / Senior Full-Stack Engineer**
 Burgos, Spain · Remote
 📧 guillermoperezruiz94@gmail.com · 📱 +34 687 96 81 29
-🔗 [LinkedIn](https://www.linkedin.com/in/guillermo-perez-ruiz-569a3815b/) · 🔗 [GitHub](https://github.com/guillermo94)
+🔗 [LinkedIn](https://www.linkedin.com/in/guillermo-perez-ruiz-569a3815b/) · 🔗 [GitHub](https://github.com/guillermopr94)
 
 ---
 
