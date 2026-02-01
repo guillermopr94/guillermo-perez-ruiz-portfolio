@@ -8,7 +8,10 @@ import {
   Linkedin, 
   Github, 
   Mail,
-  Smartphone
+  Smartphone,
+  Cpu,
+  ShieldCheck,
+  TrendingUp
 } from 'lucide-react';
 import { ExperienceItem, ProjectItem, SkillCategory, SocialLink } from './types';
 
@@ -34,7 +37,7 @@ export const HERO_DATA = {
   name: "Guillermo Pérez Ruiz",
   title: "Tech Lead (Hands-On) / Senior Full-Stack Engineer",
   tagline: "Leading from the code. Architecting scalable solutions.",
-  description: "Specialized in modernizing legacy platforms, scalable cloud architectures, and advanced CI/CD. I combine technical decision-making with direct execution to bridge the gap between product strategy and engineering reality."
+  description: "Senior Engineer & Tech Lead with a proven track record in platform modernization, scalable cloud architectures, and advanced automation. I act as a player-coach, bridging the gap between product strategy and engineering reality through direct implementation of high-impact changes."
 };
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
@@ -44,17 +47,18 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "MAHLE SmartBike Systems",
     period: "2021 – Present",
     location: "Remote",
-    description: "Technical owner of the company’s digital platform and internal systems. Leading the end-to-end modernization of a high-traffic ecosystem used by thousands of users.",
+    description: "Technical owner of the digital ecosystem and internal systems, leading a team of 4 Full-Stack engineers. Orchestrated the complete transformation of a high-traffic legacy platform used by thousands of global users.",
     achievements: [
-      "Orchestrated team workflows and architectural decisions for a squad of 4 Full-Stack engineers.",
-      "Modernized a large-scale React/Express legacy platform, eliminating critical technical debt and improving observability.",
-      "Full dockerization of frontend/backend and migration to AWS ECS (Fargate) with auto-scaling and S3/CloudFront orchestration.",
-      "Implemented advanced CI/CD pipelines with automated release management, deployment gates, and integrated QA (Smoke tests, E2E).",
-      "Progressively migrated legacy class components to React Hooks and TypeScript, ensuring 24/7 production stability.",
-      "Decoupled monolithic data architecture: migrated geospatial locations to S3, sessions to Redis, and volatile data to NoSQL.",
-      "Architected and maintain an Electron desktop app for manufacturing EOL processes, integrating low-level CAN bus/UDS protocols."
+      "Technical Leadership & Strategy: Managed team workflows, led technical decision-making, and aligned product requirements with architectural scalability.",
+      "Legacy Modernization: Transformed a severe tech-debt React/Express monolith into a clean, modern architecture, eliminating manual bash deployments and file-based logging.",
+      "Cloud Infrastructure & Dockerization: Fully dockerized the environment and migrated to AWS ECS (Fargate) with auto-scaling, ALB, and S3/CloudFront orchestration.",
+      "Advanced CI/CD & Security: Engineered automated pipelines with branch synchronization, release blocking mechanisms, and security gates using Snyk and SonarQube.",
+      "React Evolution: Executed a zero-downtime progressive migration from Class Components to Hooks and TypeScript, significantly improving frontend maintainability.",
+      "Data Layer Decoupling: Optimized data storage by separating raw location data to S3, session management to Redis, and volatile configurations to NoSQL.",
+      "Electron & Low-Level Hardware: Built and maintain an Electron desktop app for EOL manufacturing, integrating low-level CAN bus/UDS protocols for firmware management.",
+      "Observability & Monitoring: Implemented comprehensive monitoring with CloudWatch alarms and health-check systems to ensure high availability and rapid incident response."
     ],
-    techStack: ["React", "Node.js", "AWS (ECS/S3/CloudFront)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus"]
+    techStack: ["React", "Node.js", "AWS (ECS/S3/CloudFront/Secrets)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus", "UDS"]
   },
   {
     id: "izertis",
@@ -62,14 +66,14 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "Izertis S.A. (Client: Inditex)",
     period: "2020 – 2023",
     location: "Remote",
-    description: "Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global repository landscape.",
+    description: "Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global landscape (thousands of repositories).",
     achievements: [
-      "Designed and evolved global QA/DevOps strategies, automating CI/CD changes across thousands of repositories.",
-      "Developed mass-analysis scripts and centralized health metrics in Grafana to support risk-based prioritization.",
-      "Standardized quality gates (SonarQube, Snyk, Jacoco) and migrated pipelines from Bamboo to GitHub Actions.",
-      "Technical Lead for the internal Application Discovery Platform ('Yellow Pages'), coordinating full-stack development with Spring Boot and React."
+      "Enterprise Automation: Developed mass-analysis scripts to audit thousands of repositories, centralizing health metrics in Grafana for technical leadership.",
+      "Application Discovery Platform: Led as Technical Lead the development of the internal 'Yellow Pages' platform (React/Spring Boot), coordinating a distributed team.",
+      "Standardization & Quality: Enforced quality gates (SonarQube, Jacoco) and migrated legacy Bamboo pipelines to modern GitHub Actions at scale.",
+      "Distributed Systems: Integrated real-time data synchronization using Kafka and intelligent search engines to scale application discovery across the entire organization."
     ],
-    techStack: ["React", "Spring Boot", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"]
+    techStack: ["React", "Spring Boot", "Kafka", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"]
   },
   {
     id: "cognizant",
@@ -77,42 +81,47 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "Cognizant Technology Solutions",
     period: "2018 – 2020",
     location: "International / Valladolid",
-    description: "Full-stack development for KBC Bank (Belgium) in a microservices environment, assuming high technical responsibility within distributed international teams.",
+    description: "Full-stack development for KBC Bank (Belgium) in a high-demand microservices environment, working in 100% English-speaking international squads.",
     achievements: [
-      "Migrated legacy AngularJS components to modern Angular while maintaining banking platform integrity.",
-      "Developed high-criticality microservices from scratch using Spring Boot.",
-      "Worked in a 100% English-speaking environment collaborating with teams in Belgium, India, and Czech Republic.",
-      "Integrated automated testing and CI/CD flows using Jenkins and SonarQube."
+      "Digital Banking Evolution: Developed and modernized banking flows, migrating legacy AngularJS components to modern Angular while ensuring transactional integrity.",
+      "Microservices Architecture: Designed and implemented high-criticality microservices from scratch using Spring Boot and Scala.",
+      "Engineering Excellence: Acted as a technical reference within the squad, conducting rigorous code reviews and mentoring team members on best practices.",
+      "Agile Delivery: Operated within complex Scrum/SAFe frameworks, delivering frequent updates to thousands of bank customers."
     ],
-    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala"]
+    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala", "AWS"]
   }
 ];
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
-    name: "Frontend",
-    icon: Code2,
-    skills: ["React (Hooks, Context)", "TypeScript", "Tailwind CSS", "Next.js", "Electron", "HTML5/SASS"]
+    name: "Liderazgo & Arquitectura",
+    icon: Layers,
+    skills: ["Tech Leadership", "Player-Coach Model", "Legacy Modernization", "System Design", "Agile (SAFe/Scrum)", "Technical Mentoring"]
   },
   {
-    name: "Backend",
+    name: "Frontend & Apps",
+    icon: Code2,
+    skills: ["React (Hooks, Context)", "TypeScript", "Next.js", "Electron", "Tailwind CSS", "Angular", "Responsive Design"]
+  },
+  {
+    name: "Backend & Systems",
     icon: Server,
-    skills: ["Node.js (Express/NestJS)", "Java (Spring Boot)", "Go (Tooling)", "REST APIs", "Microservices"]
+    skills: ["Node.js (Express/NestJS)", "Java (Spring Boot)", "Go", "Scala", "Kafka", "RESTful APIs", "Microservices"]
   },
   {
     name: "DevOps & Cloud",
     icon: Cloud,
-    skills: ["AWS (ECS, Fargate, S3, CloudFront)", "Docker", "CI/CD (GitHub Actions, Jenkins)", "Infrastructure as Code", "Monitoring (Grafana, CloudWatch)"]
+    skills: ["AWS (ECS, S3, CloudFront, Secrets)", "Docker", "CI/CD (GitHub Actions, Jenkins)", "IaC", "Monitoring (Grafana, CloudWatch)"]
   },
   {
-    name: "Data & Persistence",
-    icon: Database,
-    skills: ["PostgreSQL", "MongoDB", "Redis", "NoSQL", "Geospatial Data", "AWS Secrets Manager"]
+    name: "Data & Security",
+    icon: ShieldCheck,
+    skills: ["PostgreSQL", "MongoDB", "Redis", "NoSQL", "Snyk / SonarQube", "Data Decoupling"]
   },
   {
-    name: "Architecture & Soft Skills",
-    icon: Layers,
-    skills: ["Legacy Modernization", "Tech Leadership", "System Design", "Agile (SAFe/Scrum)", "Mentoring", "Professional English (C1)"]
+    name: "AI & Innovation",
+    icon: TrendingUp,
+    skills: ["AI Agent Integration", "Generative AI APIs", "Prompt Engineering", "Model Fallback Strategies", "AI-Driven Automation"]
   }
 ];
 
@@ -120,35 +129,27 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: "adventure-forge",
     title: "Adventure Forge",
-    description: "AI-driven 'choose your own adventure' platform. Features dynamic narrative generation, image synthesis, and a custom provider fallback system to ensure availability on free tiers.",
-    tags: ["React", "AI Agents", "MongoDB", "Google OAuth", "Generative AI"],
-    repo: "https://github.com/guillermopr94",
+    description: "An AI-powered 'choose your own adventure' engine. Built with a high-availability fallback system for LLMs and image generation models, featuring persistent game states and multi-genre support.",
+    tags: ["React", "AI Agents", "NestJS", "MongoDB", "Google OAuth", "Generative AI"],
+    repo: "https://github.com/guillermopr94/adventure-forge",
     link: "https://guillermopr94.github.io/adventure-forge/",
     image: "https://picsum.photos/id/10/800/600",
     status: "Live"
   },
   {
-    id: "crearesarte",
-    title: "Crearte es Arte",
-    description: "End-to-end development of a professional e-commerce platform for artisan crafts. Managed frontend design, CI/CD deployment on Vercel, and ongoing system maintenance.",
-    tags: ["React", "Vercel", "E-commerce", "SEO", "Maintenance"],
-    image: "https://picsum.photos/id/312/800/600",
-    status: "Live"
-  },
-  {
     id: "galactic-conquest",
     title: "Galactic Conquest",
-    description: "A procedural space-themed deckbuilder roguelike. Leveraging AI APIs for dynamic card generation and world-building (Current project).",
-    tags: ["React 19", "Vite", "Lucide", "AI Integration", "TypeScript"],
+    description: "A space-themed procedural deckbuilder roguelike. Utilizes AI to dynamically generate cards, encounters, and world content via modular JSON architectures.",
+    tags: ["React 19", "Vite", "Lucide", "AI Integration", "Procedural Generation"],
     image: "https://picsum.photos/id/235/800/600",
     status: "In Development"
   },
   {
-    id: "mindfulness-app",
-    title: "Yoga & Mindfulness App",
-    description: "Android application for yoga practice tracking and mindfulness sessions. Full lifecycle development from concept to publication on the Google Play Store.",
-    tags: ["Android", "Java", "Mobile", "UX/UI"],
-    image: "https://picsum.photos/id/180/800/600",
-    status: "Published"
+    id: "crearesarte",
+    title: "Crearte es Arte",
+    description: "Professional e-commerce platform for artisan crafts. Features automated deployment pipelines, SEO optimization, and a seamless checkout experience.",
+    tags: ["React", "Vercel", "E-commerce", "Deployment Automation"],
+    image: "https://picsum.photos/id/312/800/600",
+    status: "Live"
   }
 ];
