@@ -26,3 +26,5 @@ Lidero equipos y proyectos desde el código, combinando la toma de decisiones ar
 
 ---
 Desarrollado con **React + Vite**. Automatizado y mantenido por **CHATYI** ⚡.
+
+[🌍 Ver en vivo](https://guillermo--perez-ruiz-portfolio.vercel.app/)
