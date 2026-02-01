@@ -25,6 +25,6 @@ I lead teams and projects from the code, combining architectural decision-making
 - **Galactic Conquest:** Procedural space strategy game (Under development).
 
 ---
-Developed with **React + Vite**. Automated and maintained by **CHATYI** ⚡.
+Developed with **React + Vite**.
 
 [🌍 View Live](https://guillermo-perez-ruiz-portfolio.vercel.app/)
