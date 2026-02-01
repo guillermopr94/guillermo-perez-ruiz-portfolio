@@ -1,30 +1,30 @@
 # Guillermo Pérez Ruiz - Portfolio
 
-Tech Lead (Hands-On) / Senior Full-Stack Engineer especializado en modernización de plataformas, arquitecturas cloud escalables y automatización avanzada.
+Tech Lead (Hands-On) / Senior Full-Stack Engineer specialized in platform modernization, scalable cloud architectures, and advanced automation.
 
-## 👨‍💻 Sobre mí
+## 👨‍💻 About Me
 
-Lidero equipos y proyectos desde el código, combinando la toma de decisiones arquitectónicas con la implementación directa de cambios complejos y de alto impacto. Tengo un fuerte enfoque en el producto, la calidad del software y el uso de agentes de IA para potenciar la productividad. Actualmente impulsando el ecosistema digital en **MAHLE SmartBike Systems**.
+I lead teams and projects from the code, combining architectural decision-making with the direct implementation of complex, high-impact changes. I have a strong focus on product, software quality, and leveraging AI agents to boost productivity. Currently driving the digital ecosystem at **MAHLE SmartBike Systems**.
 
-## 🚀 Experiencia Destacada
+## 🚀 Experience Highlights
 
-- **Tech Lead @ MAHLE SmartBike Systems:** Liderazgo técnico del ecosistema digital, migración de infraestructura legacy a AWS ECS (Fargate) y desarrollo de aplicaciones industriales con Electron.
-- **QA-DevOps & Full-Stack @ Inditex (vía Izertis):** Definición de estándares de calidad a escala global y automatización masiva de CI/CD para miles de repositorios.
-- **Programmer Analyst @ Cognizant:** Desarrollo de plataformas de banca digital en entornos internacionales de alta exigencia (KBC Bank).
+- **Tech Lead @ MAHLE SmartBike Systems:** Technical leadership of the digital ecosystem, migration of legacy infrastructure to AWS ECS (Fargate), and development of industrial Electron applications.
+- **QA-DevOps & Full-Stack @ Inditex (via Izertis):** Definition of global-scale quality standards and mass CI/CD automation for thousands of repositories.
+- **Programmer Analyst @ Cognizant:** Development of digital banking platforms in high-demand international environments (KBC Bank).
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Technology Stack
 
 - **Frontend:** React, TypeScript, Electron, Vite.
 - **Backend:** Node.js (Express/NestJS), Java (Spring Boot), Go.
 - **Cloud & DevOps:** AWS (ECS, S3, CloudFront, IAM), Docker, GitHub Actions, Jenkins.
 - **Data:** PostgreSQL, MongoDB, Redis.
 
-## 📁 Proyectos Seleccionados
+## 📁 Selected Projects
 
-- **Adventure Forge:** Plataforma de historias interactivas impulsada por IA (Google GenAI).
-- **Galactic Conquest:** Juego de estrategia espacial procedimental (en desarrollo).
+- **Adventure Forge:** AI-driven interactive storytelling platform powered by Google GenAI.
+- **Galactic Conquest:** Procedural space strategy game (Under development).
 
 ---
-Desarrollado con **React + Vite**. Automatizado y mantenido por **CHATYI** ⚡.
+Developed with **React + Vite**. Automated and maintained by **CHATYI** ⚡.
 
-[🌍 Ver en vivo](https://guillermo--perez-ruiz-portfolio.vercel.app/)
+[🌍 View Live](https://guillermo-perez-ruiz-portfolio.vercel.app/)
