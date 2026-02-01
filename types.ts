@@ -1,5 +1,11 @@
 import { LucideIcon } from 'lucide-react';
 
+export interface Milestone {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
 export interface ExperienceItem {
   id: string;
   role: string;
@@ -10,6 +16,7 @@ export interface ExperienceItem {
   achievements: string[];
   techStack: string[];
   logo?: string;
+  details?: Milestone[];
 }
 
 export interface ProjectItem {

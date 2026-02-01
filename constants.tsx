@@ -58,7 +58,29 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       "Electron & Low-Level Hardware: Built and maintain an Electron desktop app for EOL manufacturing, integrating low-level CAN bus/UDS protocols for firmware management.",
       "Observability & Monitoring: Implemented comprehensive monitoring with CloudWatch alarms and health-check systems to ensure high availability and rapid incident response."
     ],
-    techStack: ["React", "Node.js", "AWS (ECS/S3/CloudFront/Secrets)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus", "UDS"]
+    techStack: ["React", "Node.js", "AWS (ECS/S3/CloudFront/Secrets)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus", "UDS"],
+    details: [
+      {
+        title: "Platform Modernization",
+        description: "Migrated a monolithic codebase to a modular architecture, improving development velocity by 40%.",
+        icon: "Layers"
+      },
+      {
+        title: "Cloud Infrastructure",
+        description: "Architected a highly available AWS environment using ECS Fargate, resulting in 99.9% uptime.",
+        icon: "Cloud"
+      },
+      {
+        title: "DevOps & CI/CD",
+        description: "Automated deployment workflows with GitHub Actions, reducing delivery time from hours to minutes.",
+        icon: "Terminal"
+      },
+      {
+        title: "Hardware Integration",
+        description: "Developed specialized tools for real-time CAN bus communication and firmware updates for eBikes.",
+        icon: "Cpu"
+      }
+    ]
   },
   {
     id: "izertis",
@@ -73,7 +95,19 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       "Standardization & Quality: Enforced quality gates (SonarQube, Jacoco) and migrated legacy Bamboo pipelines to modern GitHub Actions at scale.",
       "Distributed Systems: Integrated real-time data synchronization using Kafka and intelligent search engines to scale application discovery across the entire organization."
     ],
-    techStack: ["React", "Spring Boot", "Kafka", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"]
+    techStack: ["React", "Spring Boot", "Kafka", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"],
+    details: [
+      {
+        title: "Quality at Scale",
+        description: "Standardized quality gates across 1000+ repositories for global Inditex engineering teams.",
+        icon: "ShieldCheck"
+      },
+      {
+        title: "Metrics & Observability",
+        description: "Built centralized dashboards in Grafana to provide real-time visibility into technical debt and code health.",
+        icon: "TrendingUp"
+      }
+    ]
   },
   {
     id: "cognizant",
@@ -88,7 +122,19 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       "Engineering Excellence: Acted as a technical reference within the squad, conducting rigorous code reviews and mentoring team members on best practices.",
       "Agile Delivery: Operated within complex Scrum/SAFe frameworks, delivering frequent updates to thousands of bank customers."
     ],
-    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala", "AWS"]
+    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala", "AWS"],
+    details: [
+      {
+        title: "Banking Systems",
+        description: "Maintained and evolved critical financial transactions systems for one of Belgium's largest banks.",
+        icon: "Database"
+      },
+      {
+        title: "International Collaboration",
+        description: "Successfully worked in multi-cultural teams across Europe and India in a high-compliance environment.",
+        icon: "SocialLink"
+      }
+    ]
   }
 ];
 
@@ -141,6 +187,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: "Galactic Conquest",
     description: "A space-themed procedural deckbuilder roguelike. Utilizes AI to dynamically generate cards, encounters, and world content via modular JSON architectures.",
     tags: ["React 19", "Vite", "Lucide", "AI Integration", "Procedural Generation"],
+    repo: "https://github.com/guillermopr94/galactic-conquest",
     image: "https://picsum.photos/id/235/800/600",
     status: "In Development"
   },
@@ -150,6 +197,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     description: "Professional e-commerce platform for artisan crafts. Features automated deployment pipelines, SEO optimization, and a seamless checkout experience.",
     tags: ["React", "Vercel", "E-commerce", "Deployment Automation"],
     link: "https://crearesarte.vercel.app/",
+    repo: "https://github.com/guillermopr94/crearesarte",
     image: "https://picsum.photos/id/312/800/600",
     status: "Live"
   }
