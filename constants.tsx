@@ -94,7 +94,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
-    name: "Liderazgo & Arquitectura",
+    name: "Leadership & Architecture",
     icon: Layers,
     skills: ["Tech Leadership", "Player-Coach Model", "Legacy Modernization", "System Design", "Agile (SAFe/Scrum)", "Technical Mentoring"]
   },
@@ -149,6 +149,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: "Crearte es Arte",
     description: "Professional e-commerce platform for artisan crafts. Features automated deployment pipelines, SEO optimization, and a seamless checkout experience.",
     tags: ["React", "Vercel", "E-commerce", "Deployment Automation"],
+    link: "https://crearesarte.vercel.app/",
     image: "https://picsum.photos/id/312/800/600",
     status: "Live"
   }
