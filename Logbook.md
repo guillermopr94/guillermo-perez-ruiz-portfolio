@@ -4,6 +4,7 @@
 
 ### ✅ Done
 
+- **Tailwind PostCSS Migration ([#5]):** Migrated from Tailwind CDN to professional PostCSS setup. Installed `tailwindcss@4.1.18`, `@tailwindcss/postcss@4.1.18`, `postcss@8.5.6`, and `autoprefixer@10.4.24`. Created `tailwind.config.js`, `postcss.config.js`, and `index.css` with `@import "tailwindcss"` directive. Configured Vite for CSS processing. Build validated successfully (44.35 kB CSS, gzip: 7.98 kB). Visual audit confirmed all styles working correctly. Created `feature/migrate-tailwind-postcss`.
 - **Interactive Manifesto ([#15]):** Designed and implemented the "Engineering Principles" section. Highlighted the Player-Coach model, automation-first approach, clean modernization, and scalability by design.
 - **SEO Optimization ([#8]):** Added Open Graph (OG) tags and Twitter cards to `index.html`. Improved social sharing visibility and site description.
 - **Content Expansion:** Added detailed achievements for MAHLE (S3/CloudFront, release blocks), Inditex (metrics, Kafka), and Cognizant.
