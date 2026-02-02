@@ -3,6 +3,7 @@
 ## 🔍 Audit & Improvement (2026-02-02)
 
 ### ✅ Done
+- **Interactive Manifesto ([#15]):** Designed and implemented the "Engineering Principles" section. Highlighted the Player-Coach model, automation-first approach, clean modernization, and scalability by design.
 - **SEO Optimization ([#8]):** Added Open Graph (OG) tags and Twitter cards to `index.html`. Improved social sharing visibility and site description.
 - **Content Expansion:** Added detailed achievements for MAHLE (S3/CloudFront, release blocks), Inditex (metrics, Kafka), and Cognizant.
 - **Interactive Journey Expansion:** Added more detailed milestones with unique icons (Workflow, BarChart, Lock, Code, etc.).
@@ -20,6 +21,7 @@
 - **Opportunity:** PDF resume generation is manual; can be automated via CI/CD.
 
 ### 🚀 Pull Requests
+- PR #18: feat: interactive manifesto and principles section (Pending Review).
 - PR #4 merged into master.
 - PR #12: feat(seo): Implement Open Graph and Twitter cards (Pending Review).
 
