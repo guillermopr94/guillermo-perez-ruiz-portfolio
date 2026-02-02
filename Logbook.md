@@ -20,6 +20,8 @@
 
 - **Performance: Image Optimization & WebP Migration ([#9]):** Migrated external project images and background noise to local optimized WebP/SVG assets. Implemented native `loading="lazy"` for project images. Added `scripts/optimize-images.js` utility using `sharp` for automated asset optimization. Served all assets locally to improve TTLB and reduce external dependencies. Fixed unused imports in `constants.tsx` to comply with linting rules. Created `feature/image-optimization-webp`.
 
+- **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, high-fidelity PDF viewer. Integrated `react-pdf` library to render the actual PDF file directly in the browser with full interactivity. Implemented responsive page navigation, zoom-to-fit logic for mobile/desktop, and professional loading states. The modal preserves the original PDF formatting and typography while adding native web controls (download, pagination). Tested across viewports to ensure seamless UX on mobile devices. Created `feature/cv-preview-modal`.
+
 ### 📋 Initial Project Scan (Developer Audit)
 
 - **Local Launch:** Successfully started Vite server.
@@ -32,6 +34,7 @@
 
 ### 🚀 Pull Requests
 
+- PR #27: feat: premium CV preview modal (Pending Review).
 - PR #25: feat: Image Optimization & WebP Migration (Pending Review).
 - PR #24: feat: QA Audit visual fixes and Contact section implementation (Merged).
 - PR #23: feat: Premium Page Transitions with Framer Motion (Merged).
@@ -44,8 +47,7 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#26]** UX Enhancement: Advanced CV Preview & Download (Research + Mobile).
-2.  **[#11]** Automated PDF Resume Generation Pipeline.
-3.  **[#16]** Functional Contact API Integration.
-4.  **[#10]** Accessibility (A11y) Compliance Review.
-5.  **[#13]** Testing: Playwright E2E Setup.
+1.  **[#11]** Automated PDF Resume Generation Pipeline.
+2.  **[#16]** Functional Contact API Integration.
+3.  **[#10]** Accessibility (A11y) Compliance Review.
+4.  **[#13]** Testing: Playwright E2E Setup.
