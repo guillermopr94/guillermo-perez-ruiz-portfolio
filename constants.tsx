@@ -244,7 +244,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
   },
   {
     id: "crearesarte",
-    title: "Crearte es Arte",
+    title: "Crear es Arte",
     description: "Professional e-commerce platform for artisan crafts. Features automated deployment pipelines, SEO optimization, and a seamless checkout experience.",
     tags: ["React", "Vercel", "E-commerce", "Deployment Automation"],
     link: "https://crearesarte.vercel.app/",
