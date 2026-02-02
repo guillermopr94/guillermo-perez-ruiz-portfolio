@@ -4,6 +4,7 @@
 
 ### ✅ Done
 - **SEO Optimization ([#8]):** Added Open Graph (OG) tags and Twitter cards to `index.html`. Improved social sharing visibility and site description.
+- **Storybook Setup ([#17]):** Initialized Storybook 10 with manual configuration and Hero component documentation. Created `feature/storybook-setup`.
 - **Content Expansion:** Added detailed achievements for MAHLE (S3/CloudFront, release blocks), Inditex (metrics, Kafka), and Cognizant.
 - **Interactive Journey Expansion:** Added more detailed milestones with unique icons (Workflow, BarChart, Lock, Code, etc.).
 - **Mobile UI Fixes:**
@@ -22,9 +23,11 @@
 ### 🚀 Pull Requests
 - PR #4 merged into master.
 - PR #12: feat(seo): Implement Open Graph and Twitter cards (Pending Review).
+- PR #19: Setup Storybook (Initial setup + Hero story).
 
 ### 🎯 Next Steps (GitHub Issues)
-1.  **[#5]** Migrate Tailwind CDN to PostCSS (High Priority).
-2.  **[#7]** QA Audit: Visual & Interaction Review.
-3.  **[#11]** Automated PDF Resume Generation Pipeline.
-4.  **[#6]** Premium Page Transitions.
+1.  **[#17]** Finish documenting remaining UI components in Storybook.
+2.  **[#5]** Migrate Tailwind CDN to PostCSS (High Priority).
+3.  **[#7]** QA Audit: Visual & Interaction Review.
+4.  **[#11]** Automated PDF Resume Generation Pipeline.
+5.  **[#6]** Premium Page Transitions.
