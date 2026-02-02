@@ -50,6 +50,29 @@ export const HERO_DATA = {
   description: "Senior Engineer & Tech Lead with over 7 years of experience in platform modernization, scalable cloud architectures, and advanced automation. I act as a player-coach, bridging the gap between product strategy and engineering execution through direct implementation of high-impact changes."
 };
 
+export const MANIFESTO_DATA = [
+  {
+    title: "The Player-Coach Model",
+    description: "Leadership is best executed from the trenches. I don't just delegate; I implement core architectural changes, set coding standards by example, and jump into the most complex bugs to unblock the team.",
+    icon: Zap
+  },
+  {
+    title: "Clean Modernization",
+    description: "Legacy code isn't a burden—it's an opportunity. My approach focuses on progressive, zero-downtime migrations from monoliths to micro-services, ensuring stability while adopting modern patterns.",
+    icon: Workflow
+  },
+  {
+    title: "Automation First",
+    description: "If a task is repetitive, it's a bug. I prioritize building robust CI/CD pipelines, automated quality gates, and observability systems that allow engineers to focus on creating value rather than manual toil.",
+    icon: Cpu
+  },
+  {
+    title: "Scalability by Design",
+    description: "Systems should be built to grow. From cloud-native infrastructure on AWS to decoupled data layers and frontend orchestration, I architect for performance, security, and long-term maintainability.",
+    icon: Layers
+  }
+];
+
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "mahle",
