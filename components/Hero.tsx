@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { HERO_DATA } from '../constants';
+import CVModal from './CVModal';
 
 const Hero: React.FC = () => {
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
   // Premium animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -142,20 +145,20 @@ const Hero: React.FC = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </motion.a>
 
-              <motion.a
-                href="/cv.pdf"
-                download
+              <motion.button
+                onClick={() => setIsCVModalOpen(true)}
                 whileHover={{
                   scale: 1.05,
-                  borderColor: 'rgba(148, 163, 184, 0.5)',
+                  borderColor: 'rgba(56, 189, 248, 0.5)',
+                  color: '#fff',
                 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-slate-300 hover:bg-slate-800 transition-all cursor-pointer"
               >
-                Download CV
-                <Download className="ml-2 h-5 w-5" />
-              </motion.a>
+                View Resume
+                <FileText className="ml-2 h-5 w-5" />
+              </motion.button>
             </motion.div>
           </motion.div>
 
@@ -338,6 +341,8 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
       </div>
+
+      <CVModal isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
     </section>
   );
 };

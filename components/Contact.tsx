@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send, MessageSquare } from 'lucide-react';
+import {
+  Mail,
+  Linkedin,
+  Github,
+  Send,
+  MessageSquare,
+  FileText,
+} from 'lucide-react';
+import CVModal from './CVModal';
 
 const Contact: React.FC = () => {
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
   return (
     <section id="contact" className="py-24 bg-slate-950 relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,6 +95,14 @@ const Contact: React.FC = () => {
                     </div>
                   </div>
                 </a>
+
+                <button
+                  onClick={() => setIsCVModalOpen(true)}
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-accent/50 rounded-xl transition-all group cursor-pointer"
+                >
+                  <FileText className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+                  <span className="font-bold">View Full Resume</span>
+                </button>
               </div>
             </div>
 
@@ -190,6 +208,8 @@ const Contact: React.FC = () => {
           </motion.div>
         </div>
       </div>
+
+      <CVModal isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
     </section>
   );
 };
