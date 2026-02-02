@@ -20,7 +20,7 @@
 
 - **Performance: Image Optimization & WebP Migration ([#9]):** Migrated external project images and background noise to local optimized WebP/SVG assets. Implemented native `loading="lazy"` for project images. Added `scripts/optimize-images.js` utility using `sharp` for automated asset optimization. Served all assets locally to improve TTLB and reduce external dependencies. Fixed unused imports in `constants.tsx` to comply with linting rules. Created `feature/image-optimization-webp`.
 
-- **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, interactive experience. Built a custom `CVPreview` modal using site-wide constants to render the resume content dynamically with a web-native look & feel. Integrated the "View Resume" button in both Hero and Contact sections for maximum visibility. Used Glassmorphism, Framer Motion for smooth transitions, and Lucide icons for professional styling. Optimized for both mobile and desktop. PR created linking to issue #26.
+- **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, high-fidelity PDF viewer. Integrated `react-pdf` library to render the actual PDF file directly in the browser with full interactivity. Implemented responsive page navigation, zoom-to-fit logic for mobile/desktop, and professional loading states. The modal preserves the original PDF formatting and typography while adding native web controls (download, pagination). Tested across viewports to ensure seamless UX on mobile devices. Created `feature/cv-preview-modal`.
 
 ### 📋 Initial Project Scan (Developer Audit)
 
