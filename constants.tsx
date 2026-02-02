@@ -17,7 +17,11 @@ import {
   Globe,
   Layout,
   Search,
-  Zap
+  Zap,
+  Workflow,
+  BarChart3,
+  ShieldAlert,
+  Code
 } from 'lucide-react';
 import { ExperienceItem, ProjectItem, SkillCategory, SocialLink } from './types';
 
@@ -56,36 +60,41 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     description: "Technical owner of the digital ecosystem and internal systems, leading a team of 4 Full-Stack engineers. Orchestrated the complete transformation of a high-traffic legacy platform used by thousands of global users.",
     achievements: [
       "Technical Leadership & Strategy: Managed team workflows, led technical decision-making, and aligned product requirements with architectural scalability.",
-      "Legacy Modernization: Transformed a monolithic React/Express application with severe technical debt into a micro-service ready architecture.",
-      "Cloud Infrastructure: Fully dockerized the environment and migrated all services to AWS ECS (Fargate) with auto-scaling and ALB.",
-      "Frontend Orchestration: Migrated web frontend to S3 + CloudFront, optimizing global delivery and reducing costs.",
-      "Advanced CI/CD & Security: Engineered automated pipelines with branch synchronization, release blocking mechanisms, and security gates (Snyk, SonarQube).",
-      "React Evolution: Executed a zero-downtime progressive migration from Class Components to Hooks and TypeScript.",
-      "Data Layer Decoupling: Optimized storage by separating raw location data to S3, session management to Redis, and volatile configurations to NoSQL.",
-      "Electron & Low-Level Hardware: Built and maintain an Electron app for EOL manufacturing, integrating low-level CAN bus/UDS protocols.",
-      "Observability & Monitoring: Implemented comprehensive monitoring with CloudWatch alarms and heat-check systems."
+      "Legacy Modernization: Transformed a monolithic React/Express application with severe technical debt (no tests, no clear architecture) into a modern, micro-service ready system.",
+      "Cloud Infrastructure: Fully dockerized the environment and migrated all services to AWS ECS (Fargate) with auto-scaling, ALB, and secure IAM policies.",
+      "Frontend Orchestration: Migrated web frontend to S3 + CloudFront, optimizing global delivery, reducing costs and implementing custom WAF rules.",
+      "Advanced CI/CD & Quality: Engineered automated pipelines with branch synchronization, release blocking mechanisms, and security gates using Snyk and SonarQube.",
+      "React Evolution: Executed a zero-downtime progressive migration from Class Components to Hooks and TypeScript, improving development velocity and type safety.",
+      "Data Layer Decoupling: Optimized storage by separating raw location data to S3, session management to Redis, and volatile configurations to MongoDB.",
+      "Electron & Low-Level Hardware: Built and maintain an Electron desktop app for EOL manufacturing, integrating low-level CAN bus/UDS protocols for bike diagnostics.",
+      "Observability & Monitoring: Implemented comprehensive monitoring with Grafana dashboards, CloudWatch alarms and health-check systems."
     ],
-    techStack: ["React", "Node.js", "AWS (ECS/S3/ALB/Secrets)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus", "UDS"],
+    techStack: ["React", "Node.js", "AWS (ECS/S3/ALB/Secrets)", "TypeScript", "Redis", "Docker", "Electron", "CAN bus", "UDS", "Grafana"],
     details: [
       {
-        title: "Platform Modernization",
-        description: "Transformed a large legacy codebase with monolithic files and manual bash deployments into a clean, modern architecture with 100% automated flows.",
+        title: "Architecture Modernization",
+        description: "Deconstructed a monolithic React/Express app into a clean, modular architecture. Implemented functional components and hooks while maintaining 24/7 service availability.",
         icon: "Layers"
       },
       {
-        title: "Cloud & DevOps Strategy",
-        description: "Migrated legacy EC2 instances to a scalable AWS ECS Fargate cluster. Automated multi-environment pipelines with branch sync and release blocking controls.",
-        icon: "Cloud"
+        title: "Cloud & DevOps Excellence",
+        description: "Orchestrated the migration to AWS ECS Fargate. Built complex GitHub Actions pipelines featuring branch auto-sync, release locks, and automated deployment gates.",
+        icon: "Workflow"
       },
       {
-        title: "Low-Level Hardware Integration",
-        description: "Architected an Electron-based manufacturing tool capable of real-time bike diagnostics via CAN bus and UDS protocols, designed to be extensible by non-dev teams.",
+        title: "Hardware & Desktop Apps",
+        description: "Developed an Electron-based manufacturing tool for end-of-line bike registration. Integrated CAN bus/UDS protocols, allowing non-dev teams to load firmware and configurations.",
         icon: "Cpu"
       },
       {
-        title: "Data Lake & Performance",
-        description: "Decoupled a monolithic database by offloading high-volume geospatial data to S3 and migrating user sessions to Redis for sub-millisecond latency.",
+        title: "High-Volume Data Handling",
+        description: "Redesigned data storage strategy: offloaded multi-GB geospatial logs to S3, moved user sessions to Redis, and migrated sensitive configs to AWS Secrets Manager.",
         icon: "Database"
+      },
+      {
+        title: "Monitoring & Reliability",
+        description: "Established comprehensive observability using Grafana and CloudWatch. Configured intelligent alerts to detect platform anomalies before they impact end-users.",
+        icon: "Activity"
       }
     ]
   },
@@ -97,27 +106,28 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     location: "Remote",
     description: "Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global landscape (thousands of repositories).",
     achievements: [
-      "Enterprise Automation: Developed mass-analysis scripts to audit thousands of repositories, centralizing health metrics in Grafana.",
-      "Application Discovery Platform: Led as Technical Lead the development of the internal 'Yellow Pages' platform (React/Spring Boot), coordinating a distributed team.",
-      "Standardization & Quality: Enforced quality gates (SonarQube, Jacoco) and migrated legacy Bamboo pipelines to modern GitHub Actions at scale.",
-      "Distributed Systems: Integrated real-time data synchronization using Kafka and intelligent search engines to scale application discovery."
+      "Enterprise Automation: Developed mass-analysis scripts to audit thousands of repositories, evaluating technical health across different departments.",
+      "Application Discovery Platform: Headed the development of 'Yellow Pages' (React/Spring Boot), a centralized platform used company-wide to discover and manage services.",
+      "Quality Standardization: Enforced quality gates (SonarQube, Jacoco) and unit test thresholds. Managed the global migration from Bamboo to GitHub Actions.",
+      "Distributed Systems: Integrated real-time data synchronization using Kafka and implemented dedicated search engines for high-performance service discovery.",
+      "Technical Auditing & Mentoring: Conducted periodic audits to ensure compliance with quality standards and provided training on testing and pipeline configuration."
     ],
-    techStack: ["React", "Spring Boot", "Kafka", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk"],
+    techStack: ["React", "Spring Boot", "Kafka", "GitHub Actions", "Grafana", "Go", "SonarQube", "Snyk", "Jacoco"],
     details: [
       {
-        title: "Global Quality Standards",
-        description: "Acted as an enablement team for thousands of developers at Inditex, defining and enforcing quality gates, unit test thresholds, and security scanning (Snyk).",
+        title: "Global Quality Oversight",
+        description: "Defined and rolled out quality standards for thousands of repositories at Inditex. Implemented SonarQube quality gates and Jacoco coverage analysis at scale.",
         icon: "ShieldCheck"
       },
       {
-        title: "Centralized Discovery Platform",
-        description: "Spearheaded the development of a company-wide 'Yellow Pages' for applications, utilizing intelligent search and Kafka for real-time repo synchronization.",
+        title: "Platform Engineering",
+        description: "Built a centralized 'Yellow Pages' for application discovery. Used Spring Boot, React, and Kafka to keep the service map synchronized across the organization.",
         icon: "Search"
       },
       {
-        title: "Metrics & Observability",
-        description: "Built advanced Grafana dashboards providing real-time quality scoring across all departments, enabling risk-based prioritization for technical management.",
-        icon: "TrendingUp"
+        title: "Business Intelligence",
+        description: "Developed a scoring system in Grafana to visualize the technical health of different areas, helping leadership prioritize risk-based technical improvements.",
+        icon: "BarChart3"
       }
     ]
   },
@@ -129,21 +139,27 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     location: "International / Valladolid",
     description: "Full-stack development for KBC Bank (Belgium) in a high-demand microservices environment, working in 100% English-speaking international squads.",
     achievements: [
-      "Digital Banking Evolution: Developed and modernized banking flows, migrating legacy AngularJS components to modern Angular.",
-      "Microservices Architecture: Designed and implemented high-criticality microservices from scratch using Spring Boot and Scala.",
-      "Engineering Excellence: Acted as a technical reference within the squad, conducting rigorous code reviews and mentoring team members.",
-      "Agile Delivery: Operated within complex Scrum/SAFe frameworks, delivering frequent updates to thousands of bank customers."
+      "Digital Banking Evolution: Developed and modernized banking flows, migrating legacy AngularJS components to modern Angular 4+.",
+      "Microservices Architecture: Designed and implemented high-criticality financial microservices from scratch using Spring Boot and Scala.",
+      "Engineering Excellence: Acted as a technical reference within the squad, conducting rigorous code reviews and implementing SonarQube standards.",
+      "Agile Delivery: Operated within complex Scrum/SAFe frameworks, delivering high-integrity transactional features to thousands of bank customers.",
+      "International Operations: Collaborated daily with distributed teams in Belgium, India, and the Czech Republic in a highly disciplined environment."
     ],
-    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala", "AWS"],
+    techStack: ["Angular", "Spring Boot", "Microservices", "Jenkins", "Scrum", "Scala", "AWS", "SonarQube"],
     details: [
       {
         title: "Financial Microservices",
-        description: "Developed and maintained transactional systems for major European banking, ensuring high security and integrity standards using Spring Boot.",
+        description: "Developed secure and scalable transactional systems for KBC Bank. Focused on backend integrity using Spring Boot and microservices architecture.",
         icon: "Lock"
       },
       {
-        title: "International Collaboration",
-        description: "Worked in a fully distributed, 100% English-speaking environment with cross-functional teams in Belgium, India, and the Czech Republic.",
+        title: "Modern Frontend Migration",
+        description: "Led the transition of complex banking dashboards from AngularJS to modern Angular, improving performance and maintainability.",
+        icon: "Code"
+      },
+      {
+        title: "Global Squad Dynamics",
+        description: "Thrived in a multicultural, 100% English-speaking environment. Mastered Agile processes and collaborative software development at an enterprise scale.",
         icon: "Globe"
       }
     ]
@@ -169,7 +185,7 @@ export const SKILLS_DATA: SkillCategory[] = [
   {
     name: "DevOps & Cloud",
     icon: Cloud,
-    skills: ["AWS (ECS, S3, CloudFront, Secrets)", "Docker", "CI/CD (GitHub Actions, Jenkins)", "IaC", "Monitoring (Grafana, CloudWatch)"]
+    skills: ["AWS (ECS, S3, CloudFront, Secrets)", "Docker", "CI/CD (GitHub Actions, Jenkins)", "IaC (Terraform)", "Monitoring (Grafana, CloudWatch)"]
   },
   {
     name: "Data & Security",
