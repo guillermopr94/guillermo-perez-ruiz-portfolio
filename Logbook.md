@@ -16,6 +16,7 @@
   - Fixed z-index issues.
 
 - **Git Hooks ([#14]):** Integrated Husky and lint-staged to automatically run ESLint and Prettier before every commit. Configured `.husky/pre-commit`, `.prettierrc`, and `eslint.config.js`. Created `feature/git-hooks-husky-issue-14`.
+- **QA Audit & Visual Polish ([#7]):** Performed a comprehensive visual audit across desktop and mobile. Implemented active section highlighting in the Navbar using Intersection Observer. Created and integrated a dedicated `Contact` section with a functional-looking form and social links, resolving the missing content for the navigation link. Verified layout stability and premium animations. Created `feature/qa-audit-visual-fixes-issue-7`.
 
 ### 📋 Initial Project Scan (Developer Audit)
 
@@ -36,7 +37,7 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#5]** Migrate Tailwind CDN to PostCSS (High Priority).
-2.  **[#7]** QA Audit: Visual & Interaction Review.
-3.  **[#11]** Automated PDF Resume Generation Pipeline.
-4.  **[#6]** Premium Page Transitions.
+1.  **[#11]** Automated PDF Resume Generation Pipeline.
+2.  **[#16]** Functional Contact API Integration.
+3.  **[#9]** Performance: Image Optimization & WebP Migration.
+4.  **[#10]** Accessibility (A11y) Compliance Review.

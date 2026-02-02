@@ -5,10 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Simple active section detection
+      const sections = ['about', 'experience', 'skills', 'projects', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -54,21 +68,28 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  whileHover={{ scale: 1.1, color: '#38bdf8' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative group"
-                >
-                  {link.name}
-                  <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
-                </motion.a>
-              ))}
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index, duration: 0.5 }}
+                    whileHover={{ scale: 1.1, color: '#38bdf8' }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`${isActive ? 'text-accent' : 'text-slate-300'} hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative group`}
+                  >
+                    {link.name}
+                    <motion.span
+                      className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300"
+                      initial={false}
+                      animate={{ width: isActive ? '100%' : '0%' }}
+                    />
+                  </motion.a>
+                );
+              })}
             </div>
           </div>
 
