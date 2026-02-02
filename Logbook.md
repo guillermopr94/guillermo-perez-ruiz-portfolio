@@ -3,6 +3,7 @@
 ## 🔍 Audit & Improvement (2026-02-02)
 
 ### ✅ Done
+
 - **Interactive Manifesto ([#15]):** Designed and implemented the "Engineering Principles" section. Highlighted the Player-Coach model, automation-first approach, clean modernization, and scalability by design.
 - **SEO Optimization ([#8]):** Added Open Graph (OG) tags and Twitter cards to `index.html`. Improved social sharing visibility and site description.
 - **Content Expansion:** Added detailed achievements for MAHLE (S3/CloudFront, release blocks), Inditex (metrics, Kafka), and Cognizant.
@@ -13,7 +14,10 @@
   - Adjusted font sizes and paddings for small devices.
   - Fixed z-index issues.
 
+- **Git Hooks ([#14]):** Integrated Husky and lint-staged to automatically run ESLint and Prettier before every commit. Configured `.husky/pre-commit`, `.prettierrc`, and `eslint.config.js`. Created `feature/git-hooks-husky-issue-14`.
+
 ### 📋 Initial Project Scan (Developer Audit)
+
 - **Local Launch:** Successfully started Vite server.
 - **Issue Found:** Project relies on Tailwind via CDN (`index.html`). This is suboptimal for production and a potential "Quick Win" FOUNDATIONAL task.
 - **Issue Found:** Mobile modal navigation needs horizontal scroll (Implemented in PR #4).
@@ -21,11 +25,13 @@
 - **Opportunity:** PDF resume generation is manual; can be automated via CI/CD.
 
 ### 🚀 Pull Requests
+
 - PR #18: feat: interactive manifesto and principles section (Pending Review).
 - PR #4 merged into master.
 - PR #12: feat(seo): Implement Open Graph and Twitter cards (Pending Review).
 
 ### 🎯 Next Steps (GitHub Issues)
+
 1.  **[#5]** Migrate Tailwind CDN to PostCSS (High Priority).
 2.  **[#7]** QA Audit: Visual & Interaction Review.
 3.  **[#11]** Automated PDF Resume Generation Pipeline.
