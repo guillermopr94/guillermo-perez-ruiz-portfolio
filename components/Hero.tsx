@@ -139,14 +139,15 @@ const Hero: React.FC = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-slate-900 bg-accent hover:bg-sky-300 transition-colors shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-slate-900 bg-accent hover:bg-sky-300 transition-colors shadow-[0_0_20px_rgba(56,189,248,0.3)] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 View Work
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </motion.a>
 
               <motion.button
                 onClick={() => setIsCVModalOpen(true)}
+                aria-label="Open resume preview modal"
                 whileHover={{
                   scale: 1.05,
                   borderColor: 'rgba(56, 189, 248, 0.5)',
@@ -154,10 +155,10 @@ const Hero: React.FC = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-slate-300 hover:bg-slate-800 transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-slate-300 hover:bg-slate-800 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 View Resume
-                <FileText className="ml-2 h-5 w-5" />
+                <FileText className="ml-2 h-5 w-5" aria-hidden="true" />
               </motion.button>
             </motion.div>
           </motion.div>

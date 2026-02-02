@@ -42,7 +42,10 @@ const Contact: React.FC = () => {
           >
             <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl backdrop-blur-sm">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <MessageSquare className="text-accent w-6 h-6" />
+                <MessageSquare
+                  className="text-accent w-6 h-6"
+                  aria-hidden="true"
+                />
                 Contact Information
               </h3>
 
@@ -51,7 +54,10 @@ const Contact: React.FC = () => {
                   href="mailto:guillermoperezruiz94@gmail.com"
                   className="flex items-center gap-4 group"
                 >
-                  <div className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all">
+                  <div
+                    className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all"
+                    aria-hidden="true"
+                  >
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
@@ -68,7 +74,10 @@ const Contact: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 group"
                 >
-                  <div className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all">
+                  <div
+                    className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all"
+                    aria-hidden="true"
+                  >
                     <Linkedin className="w-6 h-6" />
                   </div>
                   <div>
@@ -85,7 +94,10 @@ const Contact: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 group"
                 >
-                  <div className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all">
+                  <div
+                    className="p-3 bg-slate-800 rounded-lg text-accent group-hover:bg-accent group-hover:text-slate-900 transition-all"
+                    aria-hidden="true"
+                  >
                     <Github className="w-6 h-6" />
                   </div>
                   <div>
@@ -98,9 +110,13 @@ const Contact: React.FC = () => {
 
                 <button
                   onClick={() => setIsCVModalOpen(true)}
-                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-accent/50 rounded-xl transition-all group cursor-pointer"
+                  aria-label="Open resume preview modal"
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-accent/50 rounded-xl transition-all group cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
-                  <FileText className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+                  <FileText
+                    className="w-5 h-5 text-accent group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  />
                   <span className="font-bold">View Full Resume</span>
                 </button>
               </div>
@@ -126,7 +142,14 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl"
           >
-            <form className="space-y-6">
+            <form
+              className="space-y-6"
+              onSubmit={(e) => {
+                e.preventDefault();
+                // API integration placeholder
+              }}
+              aria-label="Contact form"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label
@@ -138,7 +161,10 @@ const Contact: React.FC = () => {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     placeholder="Your Name"
+                    required
+                    aria-required="true"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                   />
                 </div>
@@ -152,7 +178,10 @@ const Contact: React.FC = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="your@email.com"
+                    required
+                    aria-required="true"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                   />
                 </div>
@@ -168,7 +197,10 @@ const Contact: React.FC = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   placeholder="What's this about?"
+                  required
+                  aria-required="true"
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                 />
               </div>
@@ -182,22 +214,27 @@ const Contact: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={5}
                   placeholder="Your message here..."
+                  required
+                  aria-required="true"
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none"
                 ></textarea>
               </div>
 
               <motion.button
+                type="submit"
                 whileHover={{
                   scale: 1.02,
                   boxShadow: '0 0 20px rgba(56,189,248,0.4)',
                 }}
                 whileTap={{ scale: 0.98 }}
+                aria-label="Send contact message"
                 className="w-full py-4 bg-accent text-slate-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-sky-300 transition-colors shadow-lg shadow-accent/20"
               >
                 Send Message
-                <Send className="w-5 h-5" />
+                <Send className="w-5 h-5" aria-hidden="true" />
               </motion.button>
 
               <p className="text-center text-xs text-slate-500 italic">
