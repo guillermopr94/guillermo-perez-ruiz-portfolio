@@ -28,10 +28,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer
-      id="contact"
-      className="bg-slate-950 border-t border-slate-900 pt-16 pb-8 relative overflow-hidden"
-    >
+    <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8 relative overflow-hidden">
       {/* Decorative gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
 
