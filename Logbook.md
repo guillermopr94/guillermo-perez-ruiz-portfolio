@@ -44,8 +44,8 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#11]** Automated PDF Resume Generation Pipeline.
-2.  **[#16]** Functional Contact API Integration.
-3.  **[#9]** Performance: Image Optimization & WebP Migration.
+1.  **[#26]** UX Enhancement: Advanced CV Preview & Download (Research + Mobile).
+2.  **[#11]** Automated PDF Resume Generation Pipeline.
+3.  **[#16]** Functional Contact API Integration.
 4.  **[#10]** Accessibility (A11y) Compliance Review.
 5.  **[#13]** Testing: Playwright E2E Setup.
