@@ -29,6 +29,7 @@
 
 ### 🚀 Pull Requests
 
+- PR #23: feat: Premium Page Transitions with Framer Motion (Pending Review).
 - PR #18: feat: interactive manifesto and principles section (Pending Review).
 - PR #4 merged into master.
 - PR #12: feat(seo): Implement Open Graph and Twitter cards (Pending Review).
