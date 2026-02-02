@@ -18,6 +18,8 @@
 - **Git Hooks ([#14]):** Integrated Husky and lint-staged to automatically run ESLint and Prettier before every commit. Configured `.husky/pre-commit`, `.prettierrc`, and `eslint.config.js`. Created `feature/git-hooks-husky-issue-14`.
 - **QA Audit & Contact Section ([#7]):** Conducted a visual and interaction audit. Implemented a new premium `Contact` section with a functional-ready form and social links. Added an "Active Section" observer to the Navbar to highlight the current section during scroll. Refined paddings and transitions across the site. Created `feature/qa-audit-visual-fixes-issue-7`. Verified layout stability and premium animations.
 
+- **Performance: Image Optimization & WebP Migration ([#9]):** Migrated external project images and background noise to local optimized WebP/SVG assets. Implemented native `loading="lazy"` for project images. Added `scripts/optimize-images.js` utility using `sharp` for automated asset optimization. Served all assets locally to improve TTLB and reduce external dependencies. Fixed unused imports in `constants.tsx` to comply with linting rules. Created `feature/image-optimization-webp`.
+
 ### 📋 Initial Project Scan (Developer Audit)
 
 - **Local Launch:** Successfully started Vite server.
@@ -30,14 +32,15 @@
 
 ### 🚀 Pull Requests
 
+- PR #25: feat: Image Optimization & WebP Migration (Pending Review).
 - PR #24: feat: QA Audit visual fixes and Contact section implementation (Merged).
 - PR #23: feat: Premium Page Transitions with Framer Motion (Merged).
 - PR #22: feat: Migrate Tailwind CDN to PostCSS Setup (Merged).
 - PR #21: feat(dx): implement git hooks with Husky and lint-staged (Merged).
 - PR #19: Setup Storybook (Merged).
-- PR #18: feat: interactive manifesto and principles section (Pending Review).
-- PR #12: feat(seo): Implement Open Graph and Twitter cards (Pending Review).
-- PR #20: chore: migrate tailwind cdn to postcss (Redundant - Resolved conflicts).
+- PR #18: feat: interactive manifesto and principles section (Merged).
+- PR #12: feat(seo): Implement Open Graph and Twitter cards (Merged).
+- PR #20: chore: migrate tailwind cdn to postcss (Redundant - Superseded by PR #22).
 
 ### 🎯 Next Steps (GitHub Issues)
 
