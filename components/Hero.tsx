@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 1.2 }}
-        className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0"
+        className="absolute inset-0 bg-[url('/assets/bg/noise.svg')] z-0"
       />
 
       <div className="absolute inset-0 bg-slate-950/90 z-0">

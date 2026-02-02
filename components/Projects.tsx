@@ -5,11 +5,15 @@ import { PROJECTS_DATA } from '../constants';
 
 const Projects: React.FC = () => {
   const getStatusColor = (status?: string) => {
-    switch(status) {
-      case 'Live': return 'text-green-400 bg-green-400/10 border-green-400/20';
-      case 'Published': return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
-      case 'Prototype': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
-      default: return 'text-slate-400 bg-slate-400/10 border-slate-400/20';
+    switch (status) {
+      case 'Live':
+        return 'text-green-400 bg-green-400/10 border-green-400/20';
+      case 'Published':
+        return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+      case 'Prototype':
+        return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
+      default:
+        return 'text-slate-400 bg-slate-400/10 border-slate-400/20';
     }
   };
 
@@ -22,14 +26,16 @@ const Projects: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Featured Projects
+            </h2>
             <div className="h-1 w-20 bg-accent rounded-full mb-4"></div>
             <p className="text-slate-400 max-w-xl">
               From AI-driven storytelling to real-world e-commerce solutions.
             </p>
           </motion.div>
-          
-          <motion.a 
+
+          <motion.a
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -54,18 +60,21 @@ const Projects: React.FC = () => {
               className="group relative bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 flex flex-col"
             >
               <div className="aspect-video overflow-hidden relative">
-                 <div className="absolute inset-0 bg-slate-950/50 group-hover:bg-slate-950/20 transition-all z-10"></div>
-                 {project.status && (
-                   <div className={`absolute top-3 right-3 z-20 px-2 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 ${getStatusColor(project.status)}`}>
-                      <Circle className="w-2 h-2 fill-current animate-pulse" />
-                      {project.status}
-                   </div>
-                 )}
-                 <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
-                 />
+                <div className="absolute inset-0 bg-slate-950/50 group-hover:bg-slate-950/20 transition-all z-10"></div>
+                {project.status && (
+                  <div
+                    className={`absolute top-3 right-3 z-20 px-2 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 ${getStatusColor(project.status)}`}
+                  >
+                    <Circle className="w-2 h-2 fill-current animate-pulse" />
+                    {project.status}
+                  </div>
+                )}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                />
               </div>
 
               <div className="p-6 relative z-20 flex-1 flex flex-col">
@@ -75,10 +84,13 @@ const Projects: React.FC = () => {
                 <p className="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded border border-slate-700">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded border border-slate-700"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -86,9 +98,9 @@ const Projects: React.FC = () => {
 
                 <div className="flex items-center gap-4 pt-4 border-t border-slate-800 mt-auto">
                   {project.repo && (
-                    <a 
-                      href={project.repo} 
-                      target="_blank" 
+                    <a
+                      href={project.repo}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors"
                     >
@@ -97,9 +109,9 @@ const Projects: React.FC = () => {
                     </a>
                   )}
                   {project.link && (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
+                    <a
+                      href={project.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-accent hover:text-sky-300 transition-colors ml-auto"
                     >
@@ -108,9 +120,9 @@ const Projects: React.FC = () => {
                     </a>
                   )}
                   {!project.link && project.status === 'Live' && (
-                     <span className="text-xs text-slate-500 italic ml-auto">
-                       Private Deployment
-                     </span>
+                    <span className="text-xs text-slate-500 italic ml-auto">
+                      Private Deployment
+                    </span>
                   )}
                 </div>
               </div>
