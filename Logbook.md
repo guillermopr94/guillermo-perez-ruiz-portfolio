@@ -1,4 +1,4 @@
-# 📓 Portfolio Project Logbook
+## 📓 Portfolio Project Logbook
 
 ## 🔍 Audit & Improvement (2026-02-02)
 
@@ -11,9 +11,18 @@
   - Adjusted font sizes and paddings for small devices.
   - Fixed z-index issues.
 
-### 🐛 Known Issues (Backlog)
-- [ ] **Tailwind CDN:** Project still uses `cdn.tailwindcss.com`. Should be moved to PostCSS/Tailwind CLI for production.
-- [ ] **React 19 Warning:** Check for hydration issues if any.
+### 📋 Initial Project Scan (Developer Audit)
+- **Local Launch:** Successfully started Vite server.
+- **Issue Found:** Project relies on Tailwind via CDN (`index.html`). This is suboptimal for production and a potential "Quick Win" FOUNDATIONAL task.
+- **Issue Found:** Mobile modal navigation needs horizontal scroll (Implemented in PR #4).
+- **Opportunity:** SEO metadata is basic; needs proper OG tags for professional sharing.
+- **Opportunity:** PDF resume generation is manual; can be automated via CI/CD.
 
 ### 🚀 Pull Request
-- Created PR #4 with these improvements.
+- PR #4 merged into master. Automated deployment triggered on Vercel.
+
+### 🎯 Next Steps (GitHub Issues)
+1.  **[#5]** Migrate Tailwind CDN to PostCSS (High Priority).
+2.  **[#7]** QA Audit: Visual & Interaction Review.
+3.  **[#11]** Automated PDF Resume Generation Pipeline.
+4.  **[#6]** Premium Page Transitions.
