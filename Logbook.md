@@ -23,6 +23,7 @@
 - **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, high-fidelity PDF viewer. Integrated `react-pdf` library to render the actual PDF file directly in the browser with full interactivity. Implemented responsive page navigation, zoom-to-fit logic for mobile/desktop, and professional loading states. The modal preserves the original PDF formatting and typography while adding native web controls (download, pagination). Tested across viewports to ensure seamless UX on mobile devices. Created `feature/cv-preview-modal`.
 
 - **Accessibility Compliance ([#10]):** Implemented comprehensive WCAG 2.1 AA accessibility improvements across all components. Added ARIA labels (`aria-label`, `aria-expanded`, `aria-controls`, `aria-required`) to interactive elements. Converted non-semantic elements to proper HTML5 semantics (logo div → button). Implemented custom focus rings (`focus:ring-2 focus:ring-accent`) on all focusable elements for keyboard navigation. Added `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, and `aria-describedby` to CVModal. Ensured all form inputs have `required` and `aria-required` attributes. Marked decorative icons with `aria-hidden="true"`. Verified color contrast compliance (accent #38bdf8 on dark backgrounds exceeds WCAG AA 4.5:1 ratio). Build validated successfully. Visual and keyboard navigation testing confirmed full accessibility support. Created `feature/a11y-compliance` and documented changes in `metadata/a11y-improvements.md`.
+- **Automated PDF Resume Pipeline ([#11]):** Engineered a fully automated pipeline to regenerate the professional resume (`cv.pdf`) from site-wide constants. Created a print-optimized HTML template and a Node.js generation script using `puppeteer`. Configured a GitHub Action workflow to automatically trigger regeneration on every push to `master`, ensuring the PDF is always in sync with the latest portfolio data without manual intervention. Created `feature/pdf-automation-pipeline`.
 
 ### 📋 Initial Project Scan (Developer Audit)
 
@@ -36,6 +37,7 @@
 
 ### 🚀 Pull Requests
 
+- PR #29: feat: Automated PDF Resume Generation Pipeline (Pending Review).
 - PR #28: feat(a11y): Implement WCAG 2.1 AA Accessibility Compliance (Pending Review).
 - PR #27: feat: premium CV preview modal (Pending Review).
 - PR #25: feat: Image Optimization & WebP Migration (Pending Review).
@@ -50,7 +52,7 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#11]** Automated PDF Resume Generation Pipeline.
-2.  **[#16]** Functional Contact API Integration.
-3.  **[#13]** Testing: Playwright E2E Setup.
-4.  **[#17]** Component Documentation (Storybook Setup).
+1.  **[#16]** Functional Contact API Integration.
+2.  **[#13]** Testing: Playwright E2E Setup.
+3.  **[#17]** Component Documentation (Storybook Setup).
+4.  **[#10]** Accessibility Compliance Review (Verify PR #28).
