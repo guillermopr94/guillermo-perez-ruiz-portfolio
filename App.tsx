@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
@@ -9,7 +10,12 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="min-h-screen bg-slate-950 text-slate-200"
+    >
       <Navbar />
       <main>
         <Hero />
@@ -19,7 +25,7 @@ function App() {
         <Projects />
       </main>
       <Footer />
-    </div>
+    </motion.div>
   );
 }
 
