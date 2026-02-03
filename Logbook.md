@@ -37,6 +37,8 @@
 
 ## 🔄 Autonomous Execution Protocol (2026-02-03)
 
+<<<<<<< HEAD
+
 - **E2E Testing with Playwright ([#13]):** Established a comprehensive end-to-end testing suite to ensure site stability and prevent regressions.
   - Installed and configured `@playwright/test` for Chromium, Firefox, Webkit, and mobile viewports.
   - Implemented core test cases:
@@ -48,7 +50,17 @@
   - Configured GitHub Actions workflow (`playwright.yml`) for automated testing on push and PR.
   - Updated `.gitignore` to exclude test artifacts.
   - Verified all 35 test permutations locally.
-  - Created `feature/playwright-e2e-issue-13`.
+  - # Created `feature/playwright-e2e-issue-13`.
+- **Accessibility (A11y) Compliance Refinement ([#10]):** Enhanced the existing accessibility foundation with advanced features for full WCAG 2.1 AA compliance.
+  - Implemented robust focus trapping for `CVModal` and `Experience` detail modals, ensuring focus stays within the active dialog.
+  - Added background scroll prevention (`overflow: hidden`) when modals are open.
+  - Converted `Experience` job cards to accessible interactive elements (role="button" with keyboard support).
+  - Added comprehensive `aria-label`, `aria-expanded`, and `aria-controls` to all modal navigation and control elements.
+  - Marked decorative icons with `aria-hidden="true"` throughout the `Experience` and `Manifesto` sections.
+  - Updated `metadata/a11y-improvements.md` with detailed technical documentation.
+  - Validated build success and performed manual keyboard navigation audit.
+  - Updated branch `feature/a11y-compliance` and PR #28.
+    > > > > > > > master
 
 - **Functional Contact API Integration ([#16]):** Implemented a fully functional contact form with serverless EmailJS integration, eliminating the need for a backend server while maintaining enterprise-grade reliability.
   - Integrated `@emailjs/browser` for zero-infrastructure email delivery.
@@ -64,6 +76,23 @@
   - Validated error handling, loading states, and build success.
   - Created `feature/contact-api` and PR #35.
 
+- **Dynamic Navbar Scrollspy Fix ([#41]):** Fixed critical bug where navbar active section detection used a fixed 100px threshold that failed on different screen sizes and zoom levels.
+  - **Root Cause:** Fixed threshold didn't account for actual navbar height (64px) and couldn't adapt to viewport changes.
+  - **Implementation:**
+    - Added `useRef` to dynamically calculate navbar `offsetHeight` at runtime.
+    - Replaced fixed 100px threshold with `navbarHeight + 20px` adaptive buffer.
+    - Implemented 50ms throttle on scroll events for better performance.
+    - Added passive event listener flag to optimize scroll handling.
+    - Enhanced detection logic to reliably track sections across all screen sizes.
+  - **Testing:**
+    - Visual validation on `localhost:3000` confirmed correct behavior.
+    - Tested smooth transitions between all sections (About → Experience → Skills → Projects → Contact).
+    - Verified active highlighting at different scroll speeds.
+    - Build validated successfully (847.27 kB JS, gzip: 255.92 kB).
+    - ESLint, Prettier, and TypeScript compilation all passed.
+  - **Evidence:** Screenshots committed to `metadata/screenshots/` (experience-section.jpg, skills-section.jpg).
+  - Created `fix/navbar-scrollspy-41` and PR #66.
+
 ## 🔄 Maintenance (2026-02-03)
 
 <<<<<<< HEAD
@@ -75,6 +104,8 @@
 - **PR Maintenance Protocol (Run 3):** Executed comprehensive PMP for all open Portfolio PRs. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master. Successfully merged master into each feature branch, resolved Logbook.md conflicts automatically, validated builds locally (all passed), and pushed updates to remote. No complex conflicts detected. All PRs now synchronized with master and ready for review.
 
 - **PR Maintenance Protocol (Run 4):** Re-executed PMP triggered by cron. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master due to previous PMP Run 3 merge. PR #35 and #34 had Logbook.md conflicts (resolved automatically by merging both entries chronologically). PR #29 and #28 auto-merged without conflicts. All builds validated successfully (10-28s). All PRs pushed to remote and now fully synchronized with master. No complex conflicts detected.
+
+- **PR Maintenance Protocol (Run 5 - 2026-02-03 08:17):** Executed PMP for all 7 open PRs (#66, #56, #36, #35, #34, #29, #28). All PRs reported `MERGEABLE` status with no conflicts. Verified all branches are up-to-date with master (0 commits behind). No maintenance actions required. Clean slate confirmed - all PRs ready for review.
 
 ### 🚀 Pull Requests
 
