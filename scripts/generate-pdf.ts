@@ -3,20 +3,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 
-// Since constants.tsx uses React components (icons), we need to mock React
-// for the Node environment if we import it directly.
-// Alternatively, we can extract the data if it becomes too complex.
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 
-// Import data (we'll use a trick to ignore React components if needed)
-// For now, let's try importing it directly with tsx
 import {
   HERO_DATA,
   EXPERIENCE_DATA,
   SKILLS_DATA,
   SOCIAL_LINKS,
+  PROJECTS_DATA,
 } from '../constants';
 
 const generateHTML = () => {
@@ -30,7 +25,6 @@ const generateHTML = () => {
         <span class="exp-period">${exp.period}</span>
       </div>
       <div class="exp-company">${exp.company} | ${exp.location}</div>
-      <p class="exp-description">${exp.description}</p>
       <ul class="exp-achievements">
         ${exp.achievements.map((ach) => `<li>${ach}</li>`).join('')}
       </ul>
@@ -41,24 +35,64 @@ const generateHTML = () => {
   `,
   ).join('');
 
-  const skillsHTML = SKILLS_DATA.map(
-    (cat) => `
-    <div class="skill-category">
-      <h3>${cat.name}</h3>
-      <div class="skill-list">
-        ${cat.skills.map((skill) => `<span class="skill-item">${skill}</span>`).join(', ')}
+  const projectsHTML = PROJECTS_DATA.map(
+    (project) => `
+    <div class="project-item">
+      <div class="project-header">
+        <span class="project-title">${project.title}</span>
+        <span class="project-status">${project.status}</span>
+      </div>
+      <p class="project-desc">${project.description}</p>
+      <div class="project-links">
+        ${project.link ? `<a href="${project.link}" target="_blank">🌐 Live Demo</a>` : ''}
+        ${project.repo ? `<a href="${project.repo}" target="_blank">🐙 GitHub</a>` : ''}
       </div>
     </div>
   `,
   ).join('');
 
-  const contactHTML = SOCIAL_LINKS.map(
-    (link) => `
-    <div class="contact-link">
-      <strong>${link.name}:</strong> ${link.url.replace('mailto:', '').replace('https://', '')}
+  const skillsHTML = SKILLS_DATA.map(
+    (cat) => `
+    <div class="skill-category">
+      <h3>${cat.name}</h3>
+      <div class="skill-list">
+        ${cat.skills.map((skill) => `<span class="skill-item">${skill}</span>`).join(' • ')}
+      </div>
     </div>
   `,
   ).join('');
+
+  const contactHTML = SOCIAL_LINKS.map((link) => {
+    const displayText =
+      link.url
+        .replace('mailto:', '')
+        .replace('https://', '')
+        .replace('www.', '')
+        .split('/')[1] ||
+      link.url
+        .replace('mailto:', '')
+        .replace('https://', '')
+        .replace('www.', '');
+
+    const icon =
+      link.name === 'Email'
+        ? '📧'
+        : link.name === 'LinkedIn'
+          ? '💼'
+          : link.name === 'GitHub'
+            ? '🐙'
+            : '🔗';
+
+    return `
+      <div class="contact-item">
+        <span class="contact-icon">${icon}</span>
+        <div class="contact-info">
+          <span class="contact-label">${link.name}</span>
+          <a href="${link.url}" target="_blank">${displayText}</a>
+        </div>
+      </div>
+    `;
+  }).join('');
 
   return `
     <!DOCTYPE html>
@@ -74,168 +108,280 @@ const generateHTML = () => {
         :root {
           --primary: #0f172a;
           --accent: #38bdf8;
+          --secondary: #6366f1;
           --text: #334155;
           --text-light: #64748b;
           --border: #e2e8f0;
+          --sidebar-bg: #1e293b;
         }
         * {
           box-sizing: border-box;
           -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
         }
         body {
           font-family: 'Inter', sans-serif;
-          line-height: 1.5;
+          line-height: 1.4;
           color: var(--text);
           margin: 0;
           padding: 0;
-          font-size: 10pt;
+          font-size: 9pt;
+          background: white;
         }
-        .container {
-          width: 100%;
-          max-width: 800px;
-          margin: 0 auto;
+        .wrapper {
+          display: flex;
+          min-height: 297mm;
+        }
+        
+        .sidebar {
+          width: 30%;
+          background: var(--sidebar-bg);
+          color: white;
+          padding: 30px 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+        .sidebar h3 {
+          font-size: 11pt;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--accent);
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          padding-bottom: 8px;
+          margin: 0 0 15px 0;
+        }
+        .contact-item {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 15px;
+          align-items: center;
+        }
+        .contact-icon {
+          font-size: 14pt;
+          width: 24px;
+          text-align: center;
+        }
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+        }
+        .contact-label {
+          font-size: 7pt;
+          text-transform: uppercase;
+          color: var(--text-light);
+          font-weight: 700;
+        }
+        .contact-info a {
+          color: white;
+          text-decoration: none;
+          font-size: 8.5pt;
+          word-break: break-all;
+        }
+        .sidebar-web {
+          background: rgba(56, 189, 248, 0.1);
+          padding: 15px;
+          border-radius: 8px;
+          border: 1px solid var(--accent);
+          text-align: center;
+        }
+        .sidebar-web a {
+          color: var(--accent);
+          text-decoration: none;
+          font-weight: 800;
+          font-size: 9pt;
+        }
+        .skill-category {
+          margin-bottom: 20px;
+        }
+        .skill-category h3 {
+          font-size: 9pt;
+          color: white;
+          border-bottom: none;
+          margin-bottom: 5px;
+        }
+        .skill-list {
+          font-size: 8pt;
+          color: rgba(255,255,255,0.7);
+          line-height: 1.6;
+        }
+
+        .main {
+          width: 70%;
           padding: 40px;
+          background: white;
         }
         header {
-          border-bottom: 2px solid var(--primary);
-          padding-bottom: 20px;
           margin-bottom: 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
         }
-        .header-main h1 {
+        header h1 {
           margin: 0;
           font-size: 28pt;
           font-weight: 800;
           color: var(--primary);
           letter-spacing: -0.025em;
+          line-height: 1.1;
         }
-        .header-main h2 {
+        header h2 {
           margin: 5px 0 0;
           font-size: 14pt;
           font-weight: 600;
-          color: var(--accent);
-        }
-        .header-contact {
-          text-align: right;
-          font-size: 9pt;
-          color: var(--text-light);
+          color: var(--secondary);
         }
         .summary {
           margin-bottom: 30px;
           font-style: italic;
           color: var(--text);
+          background: #f8fafc;
           border-left: 4px solid var(--accent);
-          padding-left: 15px;
+          padding: 15px;
+          border-radius: 0 8px 8px 0;
+          font-size: 9.5pt;
         }
         section h2 {
-          font-size: 16pt;
-          font-weight: 700;
+          font-size: 14pt;
+          font-weight: 800;
           color: var(--primary);
-          border-bottom: 1px solid var(--border);
+          border-bottom: 2px solid var(--border);
           padding-bottom: 5px;
-          margin-bottom: 15px;
+          margin: 30px 0 15px 0;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
         .experience-item {
-          margin-bottom: 25px;
+          margin-bottom: 20px;
         }
         .exp-header {
           display: flex;
           justify-content: space-between;
-          font-weight: 700;
+          align-items: baseline;
+          margin-bottom: 2px;
+        }
+        .exp-role {
+          font-weight: 800;
           font-size: 11pt;
           color: var(--primary);
         }
-        .exp-company {
-          font-weight: 600;
-          color: var(--accent);
-          margin-bottom: 5px;
-        }
-        .exp-description {
-          margin: 5px 0;
-          font-weight: 500;
-        }
-        .exp-achievements {
-          margin: 5px 0;
-          padding-left: 20px;
-        }
-        .exp-achievements li {
-          margin-bottom: 3px;
-        }
-        .exp-tech {
-          margin-top: 8px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 5px;
-        }
-        .tech-tag {
-          background: #f1f5f9;
-          color: #475569;
+        .exp-period {
+          font-size: 8.5pt;
+          font-weight: 700;
+          color: var(--secondary);
+          background: #eef2ff;
           padding: 2px 8px;
           border-radius: 4px;
-          font-size: 8pt;
+        }
+        .exp-company {
+          font-weight: 700;
+          color: var(--text-light);
+          margin-bottom: 8px;
+          font-size: 9.5pt;
+        }
+        .exp-achievements {
+          margin: 8px 0;
+          padding-left: 15px;
+          font-size: 8.5pt;
+        }
+        .exp-achievements li {
+          margin-bottom: 4px;
+        }
+        .exp-tech {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          margin-top: 10px;
+        }
+        .tech-tag {
+          font-size: 7.5pt;
+          background: #f1f5f9;
+          color: #475569;
+          padding: 1px 6px;
+          border-radius: 4px;
+          border: 1px solid var(--border);
           font-weight: 600;
-          border: 1px solid #e2e8f0;
         }
-        .skills-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
+        .project-item {
+          margin-bottom: 15px;
         }
-        .skill-category h3 {
-          font-size: 10pt;
-          margin: 0 0 5px;
+        .project-header {
+          display: flex;
+          justify-content: space-between;
+          font-weight: 700;
+        }
+        .project-title {
           color: var(--primary);
-          text-transform: uppercase;
+          font-size: 10pt;
         }
-        .skill-list {
-          font-size: 9pt;
+        .project-status {
+          font-size: 8pt;
+          color: var(--accent);
+        }
+        .project-desc {
+          margin: 2px 0 0 0;
+          font-size: 8.5pt;
           color: var(--text-light);
         }
+        .project-links {
+          margin-top: 5px;
+          display: flex;
+          gap: 10px;
+        }
+        .project-links a {
+          font-size: 7.5pt;
+          color: var(--accent);
+          text-decoration: none;
+          font-weight: 700;
+        }
+
         @media print {
-          body {
-            padding: 0;
-          }
-          .container {
-            padding: 20px;
-            max-width: 100%;
-          }
-          .no-print {
-            display: none;
-          }
+          .wrapper { height: auto; }
+          .sidebar { min-height: 297mm; }
         }
       </style>
     </head>
     <body>
-      <div class="container">
-        <header>
-          <div class="header-main">
+      <div class="wrapper">
+        <aside class="sidebar">
+          <div class="sidebar-web">
+            <a href="https://guillermo-perez-ruiz-portfolio.vercel.app/" target="_blank">
+              🌐 VIEW LIVE PORTFOLIO
+            </a>
+          </div>
+
+          <section>
+            <h3>Contact</h3>
+            ${contactHTML}
+          </section>
+
+          <section>
+            <h3>Technical Skills</h3>
+            ${skillsHTML}
+          </section>
+
+          <section style="margin-top: auto; font-size: 7pt; opacity: 0.5;">
+            Generated on ${new Date().toLocaleDateString()}
+          </section>
+        </aside>
+
+        <main class="main">
+          <header>
             <h1>${name}</h1>
             <h2>${title}</h2>
-          </div>
-          <div class="header-contact">
-            ${contactHTML}
-          </div>
-        </header>
+          </header>
 
-        <div class="summary">
-          ${description}
-        </div>
-
-        <section>
-          <h2>Experience</h2>
-          ${experienceHTML}
-        </section>
-
-        <section style="page-break-before: auto;">
-          <h2>Skills & Expertise</h2>
-          <div class="skills-grid">
-            ${skillsHTML}
+          <div class="summary">
+            ${description}
           </div>
-        </section>
+
+          <section>
+            <h2>Professional Experience</h2>
+            ${experienceHTML}
+          </section>
+
+          <section>
+            <h2>Selected Projects</h2>
+            ${projectsHTML}
+          </section>
+        </main>
       </div>
     </body>
     </html>
@@ -276,10 +422,10 @@ async function run() {
   });
 
   await browser.close();
-  console.log('PDF generated successfully at:', outputPath);
+  console.log('✅ PDF generated successfully at:', outputPath);
 }
 
 run().catch((err) => {
-  console.error('Error generating PDF:', err);
+  console.error('❌ Error generating PDF:', err);
   process.exit(1);
 });

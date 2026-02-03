@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Circle } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
+import ProjectImage from './ProjectImage';
 
 const Projects: React.FC = () => {
   const getStatusColor = (status?: string) => {
@@ -63,21 +64,20 @@ const Projects: React.FC = () => {
                 transition={{ delay: index * 0.1 }}
                 className="flex-1 flex flex-col"
               >
-                <div className="aspect-video overflow-hidden relative">
-                  <div className="absolute inset-0 bg-slate-950/50 group-hover:bg-slate-950/20 transition-all z-10"></div>
+                <div className="aspect-video relative overflow-hidden">
                   {project.status && (
                     <div
-                      className={`absolute top-3 right-3 z-20 px-2 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 ${getStatusColor(project.status)}`}
+                      className={`absolute top-3 right-3 z-30 px-2 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 ${getStatusColor(project.status)}`}
                     >
                       <Circle className="w-2 h-2 fill-current animate-pulse" />
                       {project.status}
                     </div>
                   )}
-                  <img
+                  <ProjectImage
                     src={project.image}
                     alt={`Screenshot of ${project.title} project`}
-                    loading="lazy"
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                    containerClassName="w-full h-full"
+                    className="filter grayscale group-hover:grayscale-0"
                   />
                 </div>
 
