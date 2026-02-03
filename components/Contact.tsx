@@ -138,6 +138,7 @@ const Contact: React.FC = () => {
                   <input
                     type="text"
                     id="name"
+                    required
                     placeholder="Your Name"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                   />
@@ -152,6 +153,7 @@ const Contact: React.FC = () => {
                   <input
                     type="email"
                     id="email"
+                    required
                     placeholder="your@email.com"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                   />
@@ -168,6 +170,7 @@ const Contact: React.FC = () => {
                 <input
                   type="text"
                   id="subject"
+                  required
                   placeholder="What's this about?"
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                 />
@@ -182,6 +185,7 @@ const Contact: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  required
                   rows={5}
                   placeholder="Your message here..."
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none"
@@ -189,6 +193,7 @@ const Contact: React.FC = () => {
               </div>
 
               <motion.button
+                type="submit"
                 whileHover={{
                   scale: 1.02,
                   boxShadow: '0 0 20px rgba(56,189,248,0.4)',

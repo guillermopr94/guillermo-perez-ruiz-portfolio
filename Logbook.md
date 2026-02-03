@@ -48,6 +48,16 @@
   - Validated error handling, loading states, and build success.
   - Created `feature/contact-api` and PR #35.
 
+- **Accessibility (A11y) Compliance Review ([#10]):** Conducted a comprehensive accessibility audit and implemented key improvements to ensure WCAG 2.1 AA compliance.
+  - Improved semantic HTML by converting generic wrappers to `<article>` tags for project cards.
+  - Enhanced Navbar accessibility with `aria-label` and `aria-expanded` attributes for the mobile menu toggle.
+  - Implemented ARIA attributes for the CV Modal (`role="dialog"`, `aria-modal="true"`, `aria-labelledby`) and added descriptive `aria-labels` for all modal controls (Download, Close, Pagination).
+  - Added descriptive `aria-labels` for project links, social icons, and GitHub links.
+  - Ensured all form inputs in the Contact section have `required` attributes and proper label associations.
+  - Implemented global high-visibility focus indicators (`:focus-visible`) via Tailwind to improve keyboard navigation.
+  - Verified build integrity and visual consistency.
+  - Created `feature/a11y-compliance-audit` and PR #ISSUE_PR_ID.
+
 ## 🔄 Maintenance (2026-02-03)
 
 - **PR Maintenance Protocol (Run 3):** Executed comprehensive PMP for all open Portfolio PRs. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master. Successfully merged master into each feature branch, resolved Logbook.md conflicts automatically, validated builds locally (all passed), and pushed updates to remote. No complex conflicts detected. All PRs now synchronized with master and ready for review.

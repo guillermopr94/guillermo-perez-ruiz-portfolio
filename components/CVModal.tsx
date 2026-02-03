@@ -70,11 +70,17 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="relative w-full max-w-5xl h-[90vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 md:p-6 border-b border-slate-800 bg-slate-900/50">
               <div className="flex flex-col">
-                <h2 className="text-lg md:text-xl font-bold text-white flex items-center gap-2">
+                <h2
+                  id="modal-title"
+                  className="text-lg md:text-xl font-bold text-white flex items-center gap-2"
+                >
                   <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                   Professional Resume
                 </h2>
@@ -92,6 +98,7 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 px-3 py-2 bg-accent text-slate-950 rounded-lg text-xs md:text-sm font-bold hover:bg-sky-300 transition-colors"
+                  aria-label="Download Resume PDF"
                 >
                   <Download size={16} />
                   <span className="hidden sm:inline">Download PDF</span>
@@ -99,6 +106,7 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={onClose}
                   className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors"
+                  aria-label="Close modal"
                 >
                   <X size={24} />
                 </button>
@@ -155,6 +163,7 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                   disabled={pageNumber <= 1}
                   onClick={previousPage}
                   className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all"
+                  aria-label="Previous page"
                 >
                   <ChevronLeft size={24} />
                 </button>
@@ -165,6 +174,7 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                   disabled={pageNumber >= (numPages || 1)}
                   onClick={nextPage}
                   className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all"
+                  aria-label="Next page"
                 >
                   <ChevronRight size={24} />
                 </button>
