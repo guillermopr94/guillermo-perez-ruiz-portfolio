@@ -19,6 +19,15 @@ This update implements comprehensive accessibility (a11y) enhancements across th
 - ✅ Added focus rings to all navigation links (`focus:ring-2 focus:ring-accent`)
 - ✅ Added focus ring to mobile menu button
 
+### 🏗️ Experience.tsx
+
+- ✅ Converted job card `<div>` to accessible `role="button"` with keyboard support (`Enter`/`Space`)
+- ✅ Added `aria-expanded` and `aria-controls` to job cards
+- ✅ Added `role="dialog"` and `aria-modal="true"` to Experience detail modal
+- ✅ Implemented focus trapping for the Experience detail modal
+- ✅ Added `aria-label` and focus rings to all modal buttons (Close, Milestone navigation)
+- ✅ Added `aria-hidden="true"` to all decorative icons
+
 ### 📝 Contact.tsx
 
 - ✅ Added `onSubmit` handler to `<form>` with proper `aria-label="Contact form"`
@@ -34,6 +43,7 @@ This update implements comprehensive accessibility (a11y) enhancements across th
 - ✅ Added `aria-labelledby="cv-modal-title"` and `aria-describedby="cv-modal-description"`
 - ✅ Added `id="cv-modal-title"` to modal title heading
 - ✅ Added `id="cv-modal-description"` to page counter paragraph
+- ✅ Implemented focus trapping and background scroll prevention
 - ✅ Added `aria-label="Close resume modal"` to close button
 - ✅ Added `aria-label="Previous page"` and `aria-label="Next page"` to navigation buttons
 - ✅ Added focus rings to all interactive elements
