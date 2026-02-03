@@ -23,7 +23,6 @@
 - **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, high-fidelity PDF viewer. Integrated `react-pdf` library to render the actual PDF file directly in the browser with full interactivity. Implemented responsive page navigation, zoom-to-fit logic for mobile/desktop, and professional loading states. The modal preserves the original PDF formatting and typography while adding native web controls (download, pagination). Tested across viewports to ensure seamless UX on mobile devices. Created `feature/cv-preview-modal`.
 
 - **Accessibility Compliance ([#10]):** Implemented comprehensive WCAG 2.1 AA accessibility improvements across all components. Added ARIA labels (`aria-label`, `aria-expanded`, `aria-controls`, `aria-required`) to interactive elements. Converted non-semantic elements to proper HTML5 semantics (logo div → button). Implemented custom focus rings (`focus:ring-2 focus:ring-accent`) on all focusable elements for keyboard navigation. Added `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, and `aria-describedby` to CVModal. Ensured all form inputs have `required` and `aria-required` attributes. Marked decorative icons with `aria-hidden="true"`. Verified color contrast compliance (accent #38bdf8 on dark backgrounds exceeds WCAG AA 4.5:1 ratio). Build validated successfully. Visual and keyboard navigation testing confirmed full accessibility support. Created `feature/a11y-compliance` and documented changes in `metadata/a11y-improvements.md`.
-- **Automated PDF Resume Pipeline ([#11]):** Engineered a fully automated pipeline to regenerate the professional resume (`cv.pdf`) from site-wide constants. Created a print-optimized HTML template and a Node.js generation script using `puppeteer`. Configured a GitHub Action workflow to automatically trigger regeneration on every push to `master`, ensuring the PDF is always in sync with the latest portfolio data without manual intervention. Created `feature/pdf-automation-pipeline`.
 
 ### 📋 Initial Project Scan (Developer Audit)
 
@@ -93,6 +92,25 @@
   - **Evidence:** Screenshots committed to `metadata/screenshots/` (experience-section.jpg, skills-section.jpg).
   - Created `fix/navbar-scrollspy-41` and PR #66.
 
+- **Projects Image CLS & Skeleton Fix ([#42]):** Fixed critical UX issue where project images caused layout shift during loading and lacked visual feedback.
+  - **Root Cause:** Images loaded lazily without reserved space or placeholders, causing "jumps" in the layout when they appeared.
+  - **Implementation:**
+    - Created a premium `ProjectImage.tsx` component to encapsulate loading logic.
+    - Implemented a pulse skeleton animation using Framer Motion and Tailwind CSS.
+    - Added a custom "Image unavailable" error state with icon for broken links.
+    - Engineered a smooth fade-in and scale-up entrance animation (500ms duration).
+    - Preserved `aspect-video` (16:9) ratio in the container to eliminate Cumulative Layout Shift (CLS).
+    - Integrated grayscale-to-color transition on group hover for enhanced interactivity.
+    - Optimized bundle by reusing existing `framer-motion` and `lucide-react` dependencies.
+  - **Testing:**
+    - Visual validation on `localhost:3000` confirmed zero layout shift.
+    - Verified skeleton state by simulating slow network speed.
+    - Tested error fallback by providing invalid image paths.
+    - Build validated successfully (852.96 kB JS, gzip: 257.28 kB).
+    - Prettier and ESLint passed.
+  - **Evidence:** Screenshot committed to `metadata/screenshots/issue-42-projects-cls-skeleton.jpg`.
+  - Created `fix/projects-cls-skeleton-42` and PR #68.
+
 ## 🔄 Maintenance (2026-02-03)
 
 <<<<<<< HEAD
@@ -106,6 +124,8 @@
 - **PR Maintenance Protocol (Run 4):** Re-executed PMP triggered by cron. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master due to previous PMP Run 3 merge. PR #35 and #34 had Logbook.md conflicts (resolved automatically by merging both entries chronologically). PR #29 and #28 auto-merged without conflicts. All builds validated successfully (10-28s). All PRs pushed to remote and now fully synchronized with master. No complex conflicts detected.
 
 - **PR Maintenance Protocol (Run 5 - 2026-02-03 08:17):** Executed PMP for all 7 open PRs (#66, #56, #36, #35, #34, #29, #28). All PRs reported `MERGEABLE` status with no conflicts. Verified all branches are up-to-date with master (0 commits behind). No maintenance actions required. Clean slate confirmed - all PRs ready for review.
+
+- **PR Maintenance Protocol (Run 6 - 2026-02-03 09:48):** Executed PMP triggered by cron `portfolio-pr-maint`. Audited 5 open PRs (#67, #36, #35, #34, #29). Detected PR #36 (`feature/vitest-setup`) 5 commits behind master. Successfully merged `origin/master` → `feature/vitest-setup` with no conflicts (automatic merge). Build validated successfully (12.23s, 851.31 kB JS). Pushed updated branch to remote. Updated Issue #33 with sync status. All PRs now synchronized with master and ready for review. No complex conflicts detected.
 
 ### 🚀 Pull Requests
 
@@ -124,7 +144,7 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#16]** Functional Contact API Integration.
-2.  **[#13]** Testing: Playwright E2E Setup.
-3.  **[#17]** Component Documentation (Storybook Setup).
-4.  **[#10]** Accessibility Compliance Review (Verify PR #28).
+1.  **[#11]** Automated PDF Resume Generation Pipeline.
+2.  **[#16]** Functional Contact API Integration.
+3.  **[#13]** Testing: Playwright E2E Setup.
+4.  **[#17]** Component Documentation (Storybook Setup).
