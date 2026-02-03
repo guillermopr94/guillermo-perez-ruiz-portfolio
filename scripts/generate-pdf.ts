@@ -35,19 +35,21 @@ const generateHTML = () => {
   `,
   ).join('');
 
-  const projectsHTML = PROJECTS_DATA.slice(0, 2)
-    .map(
-      (project) => `
+  const projectsHTML = PROJECTS_DATA.map(
+    (project) => `
     <div class="project-item">
       <div class="project-header">
         <span class="project-title">${project.title}</span>
         <span class="project-status">${project.status}</span>
       </div>
       <p class="project-desc">${project.description}</p>
+      <div class="project-links">
+        ${project.link ? `<a href="${project.link}" target="_blank">🌐 Live Demo</a>` : ''}
+        ${project.repo ? `<a href="${project.repo}" target="_blank">🐙 GitHub</a>` : ''}
+      </div>
     </div>
   `,
-    )
-    .join('');
+  ).join('');
 
   const skillsHTML = SKILLS_DATA.map(
     (cat) => `
@@ -317,6 +319,17 @@ const generateHTML = () => {
           margin: 2px 0 0 0;
           font-size: 8.5pt;
           color: var(--text-light);
+        }
+        .project-links {
+          margin-top: 5px;
+          display: flex;
+          gap: 10px;
+        }
+        .project-links a {
+          font-size: 7.5pt;
+          color: var(--accent);
+          text-decoration: none;
+          font-weight: 700;
         }
 
         @media print {
