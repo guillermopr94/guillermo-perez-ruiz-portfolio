@@ -36,6 +36,16 @@
 
 ## 🔄 Autonomous Execution Protocol (2026-02-03)
 
+- **Accessibility (A11y) Compliance Refinement ([#10]):** Enhanced the existing accessibility foundation with advanced features for full WCAG 2.1 AA compliance.
+  - Implemented robust focus trapping for `CVModal` and `Experience` detail modals, ensuring focus stays within the active dialog.
+  - Added background scroll prevention (`overflow: hidden`) when modals are open.
+  - Converted `Experience` job cards to accessible interactive elements (role="button" with keyboard support).
+  - Added comprehensive `aria-label`, `aria-expanded`, and `aria-controls` to all modal navigation and control elements.
+  - Marked decorative icons with `aria-hidden="true"` throughout the `Experience` and `Manifesto` sections.
+  - Updated `metadata/a11y-improvements.md` with detailed technical documentation.
+  - Validated build success and performed manual keyboard navigation audit.
+  - Updated branch `feature/a11y-compliance` and PR #28.
+
 - **Functional Contact API Integration ([#16]):** Implemented a fully functional contact form with serverless EmailJS integration, eliminating the need for a backend server while maintaining enterprise-grade reliability.
   - Integrated `@emailjs/browser` for zero-infrastructure email delivery.
   - Implemented comprehensive client-side validation (required fields, email format).
