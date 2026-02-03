@@ -56,7 +56,7 @@
   - Ensured all form inputs in the Contact section have `required` attributes and proper label associations.
   - Implemented global high-visibility focus indicators (`:focus-visible`) via Tailwind to improve keyboard navigation.
   - Verified build integrity and visual consistency.
-  - Created `feature/a11y-compliance-audit` and PR #ISSUE_PR_ID.
+  - Created `feature/a11y-compliance-audit` and PR #56.
 
 ## 🔄 Maintenance (2026-02-03)
 
