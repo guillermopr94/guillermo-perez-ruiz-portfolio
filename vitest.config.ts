@@ -7,6 +7,12 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     setupFiles: './src/test/setup.ts',
+    exclude: [
+      '**/node_modules/**',
+      '**/tests/**',
+      '**/playwright-report/**',
+      '**/test-results/**',
+    ],
     css: true,
     coverage: {
       provider: 'v8',
