@@ -48,6 +48,23 @@
   - Validated error handling, loading states, and build success.
   - Created `feature/contact-api` and PR #35.
 
+- **Dynamic Navbar Scrollspy Fix ([#41]):** Fixed critical bug where navbar active section detection used a fixed 100px threshold that failed on different screen sizes and zoom levels.
+  - **Root Cause:** Fixed threshold didn't account for actual navbar height (64px) and couldn't adapt to viewport changes.
+  - **Implementation:**
+    - Added `useRef` to dynamically calculate navbar `offsetHeight` at runtime.
+    - Replaced fixed 100px threshold with `navbarHeight + 20px` adaptive buffer.
+    - Implemented 50ms throttle on scroll events for better performance.
+    - Added passive event listener flag to optimize scroll handling.
+    - Enhanced detection logic to reliably track sections across all screen sizes.
+  - **Testing:**
+    - Visual validation on `localhost:3000` confirmed correct behavior.
+    - Tested smooth transitions between all sections (About → Experience → Skills → Projects → Contact).
+    - Verified active highlighting at different scroll speeds.
+    - Build validated successfully (847.27 kB JS, gzip: 255.92 kB).
+    - ESLint, Prettier, and TypeScript compilation all passed.
+  - **Evidence:** Screenshots committed to `metadata/screenshots/` (experience-section.jpg, skills-section.jpg).
+  - Created `fix/navbar-scrollspy-41` and PR #66.
+
 ## 🔄 Maintenance (2026-02-03)
 
 - **PR Maintenance Protocol (Run 3):** Executed comprehensive PMP for all open Portfolio PRs. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master. Successfully merged master into each feature branch, resolved Logbook.md conflicts automatically, validated builds locally (all passed), and pushed updates to remote. No complex conflicts detected. All PRs now synchronized with master and ready for review.
