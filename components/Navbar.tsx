@@ -6,27 +6,56 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const navRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    let timeoutId: NodeJS.Timeout;
 
-      // Simple active section detection
-      const sections = ['about', 'experience', 'skills', 'projects', 'contact'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
+    const handleScroll = () => {
+      // Throttle scroll events for better performance
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setScrolled(window.scrollY > 50);
+
+        // Dynamic navbar height calculation
+        const navbarHeight = navRef.current?.offsetHeight || 80;
+        const offset = navbarHeight + 20; // Add small buffer for better UX
+
+        // Improved active section detection
+        const sections = [
+          'about',
+          'experience',
+          'skills',
+          'projects',
+          'contact',
+        ];
+        let currentSection = activeSection;
+
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // Check if section is in viewport, accounting for navbar
+            if (rect.top <= offset && rect.bottom > offset) {
+              currentSection = section;
+              break;
+            }
           }
         }
-      }
+
+        setActiveSection(currentSection);
+      }, 50); // 50ms throttle
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    // Initial check
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [activeSection]);
 
   const navLinks = [
     { name: 'About', href: '#about' },
@@ -38,6 +67,7 @@ const Navbar: React.FC = () => {
 
   return (
     <motion.nav
+      ref={navRef}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
