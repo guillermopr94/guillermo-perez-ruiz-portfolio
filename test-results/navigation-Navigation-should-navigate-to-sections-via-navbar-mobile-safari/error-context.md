@@ -1,0 +1,330 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+    - navigation [ref=e4]:
+        - generic [ref=e6]:
+            - button "Scroll to top" [ref=e7] [cursor=pointer]:
+                - img [ref=e9]
+                - generic [ref=e11]: GPR.dev
+            - button "Close navigation menu" [expanded] [active] [ref=e13]:
+                - img [ref=e15]
+        - navigation "Mobile navigation" [ref=e18]:
+            - generic [ref=e19]:
+                - link "About" [ref=e20]:
+                    - /url: '#about'
+                - link "Experience" [ref=e21]:
+                    - /url: '#experience'
+                - link "Skills" [ref=e22]:
+                    - /url: '#skills'
+                - link "Projects" [ref=e23]:
+                    - /url: '#projects'
+                - link "Contact" [ref=e24]:
+                    - /url: '#contact'
+    - main [ref=e25]:
+        - generic [ref=e32]:
+            - generic [ref=e33]: Available for new challenges
+            - heading "Hi, I'm Guillermo Pérez Ruiz" [level=1] [ref=e37]:
+                - text: Hi, I'm
+                - text: Guillermo Pérez Ruiz
+            - paragraph [ref=e38]: Tech Lead (Hands-On) / Senior Full-Stack Engineer
+            - paragraph [ref=e39]: Leading from the code. Architecting scalable solutions.
+            - generic [ref=e40]:
+                - link "View Work" [ref=e41]:
+                    - /url: '#projects'
+                    - text: View Work
+                    - img [ref=e42]
+                - button "Open resume preview modal" [ref=e44] [cursor=pointer]:
+                    - text: View Resume
+                    - img [ref=e45]
+        - generic [ref=e51]:
+            - generic [ref=e52]:
+                - heading "Engineering Principles" [level=2] [ref=e53]
+                - paragraph [ref=e54]: 'My philosophy as a Player-Coach: Bridging technical excellence with strategic leadership.'
+            - generic [ref=e55]:
+                - generic [ref=e56]:
+                    - img [ref=e58]
+                    - heading "The Player-Coach Model" [level=3] [ref=e60]
+                    - paragraph [ref=e61]: Leadership is best executed from the trenches. I don't just delegate; I implement core architectural changes, set coding standards by example, and jump into the most complex bugs to unblock the team.
+                - generic [ref=e62]:
+                    - img [ref=e64]
+                    - heading "Clean Modernization" [level=3] [ref=e68]
+                    - paragraph [ref=e69]: Legacy code isn't a burden—it's an opportunity. My approach focuses on progressive, zero-downtime migrations from monoliths to micro-services, ensuring stability while adopting modern patterns.
+                - generic [ref=e70]:
+                    - img [ref=e72]
+                    - heading "Automation First" [level=3] [ref=e75]
+                    - paragraph [ref=e76]: If a task is repetitive, it's a bug. I prioritize building robust CI/CD pipelines, automated quality gates, and observability systems that allow engineers to focus on creating value rather than manual toil.
+                - generic [ref=e77]:
+                    - img [ref=e79]
+                    - heading "Scalability by Design" [level=3] [ref=e83]
+                    - paragraph [ref=e84]: Systems should be built to grow. From cloud-native infrastructure on AWS to decoupled data layers and frontend orchestration, I architect for performance, security, and long-term maintainability.
+        - generic [ref=e86]:
+            - generic [ref=e87]:
+                - heading "Professional Experience" [level=2] [ref=e88]
+                - paragraph [ref=e90]: A journey through technical leadership, legacy modernization, and scalable architecture. Click on a role to see more details.
+            - generic [ref=e92]:
+                - generic [ref=e95] [cursor=pointer]:
+                    - generic [ref=e96]:
+                        - generic [ref=e97]:
+                            - heading "Tech Lead (Hands-On) / Senior Full-Stack Engineer" [level=3] [ref=e98]
+                            - generic [ref=e99]: MAHLE SmartBike Systems
+                        - img [ref=e100]
+                    - generic [ref=e102]:
+                        - generic [ref=e103]:
+                            - img [ref=e104]
+                            - text: 2021 – Present
+                        - generic [ref=e106]:
+                            - img [ref=e107]
+                            - text: Remote
+                    - paragraph [ref=e110]: Technical owner of the digital ecosystem and internal systems, leading a team of 4 Full-Stack engineers. Orchestrated the complete transformation of a high-traffic legacy platform used by thousands of global users.
+                - generic [ref=e113] [cursor=pointer]:
+                    - generic [ref=e114]:
+                        - generic [ref=e115]:
+                            - heading "QA-DevOps & Full-Stack Developer / Tech Lead" [level=3] [ref=e116]
+                            - generic [ref=e117]: 'Izertis S.A. (Client: Inditex)'
+                        - img [ref=e118]
+                    - generic [ref=e120]:
+                        - generic [ref=e121]:
+                            - img [ref=e122]
+                            - text: 2020 – 2023
+                        - generic [ref=e124]:
+                            - img [ref=e125]
+                            - text: Remote
+                    - paragraph [ref=e128]: Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global landscape (thousands of repositories).
+                - generic [ref=e131] [cursor=pointer]:
+                    - generic [ref=e132]:
+                        - generic [ref=e133]:
+                            - heading "Full-Stack Programmer Analyst" [level=3] [ref=e134]
+                            - generic [ref=e135]: Cognizant Technology Solutions
+                        - img [ref=e136]
+                    - generic [ref=e138]:
+                        - generic [ref=e139]:
+                            - img [ref=e140]
+                            - text: 2018 – 2020
+                        - generic [ref=e142]:
+                            - img [ref=e143]
+                            - text: International / Valladolid
+                    - paragraph [ref=e146]: Full-stack development for KBC Bank (Belgium) in a high-demand microservices environment, working in 100% English-speaking international squads.
+        - generic [ref=e148]:
+            - generic [ref=e149]:
+                - heading "Technical Arsenal" [level=2] [ref=e150]
+                - paragraph [ref=e152]: A comprehensive stack to solve complex engineering problems.
+            - generic [ref=e153]:
+                - generic [ref=e154]:
+                    - generic [ref=e155]:
+                        - img [ref=e157]
+                        - heading "Leadership & Architecture" [level=3] [ref=e161]
+                    - generic [ref=e162]:
+                        - generic [ref=e163]: Tech Leadership
+                        - generic [ref=e164]: Player-Coach Model
+                        - generic [ref=e165]: Legacy Modernization
+                        - generic [ref=e166]: System Design
+                        - generic [ref=e167]: Agile (SAFe/Scrum)
+                        - generic [ref=e168]: Technical Mentoring
+                - generic [ref=e169]:
+                    - generic [ref=e170]:
+                        - img [ref=e172]
+                        - heading "Frontend & Apps" [level=3] [ref=e176]
+                    - generic [ref=e177]:
+                        - generic [ref=e178]: React (Hooks, Context)
+                        - generic [ref=e179]: TypeScript
+                        - generic [ref=e180]: Next.js
+                        - generic [ref=e181]: Electron
+                        - generic [ref=e182]: Tailwind CSS
+                        - generic [ref=e183]: Angular
+                        - generic [ref=e184]: Responsive Design
+                - generic [ref=e185]:
+                    - generic [ref=e186]:
+                        - img [ref=e188]
+                        - heading "Backend & Systems" [level=3] [ref=e191]
+                    - generic [ref=e192]:
+                        - generic [ref=e193]: Node.js (Express/NestJS)
+                        - generic [ref=e194]: Java (Spring Boot)
+                        - generic [ref=e195]: Go
+                        - generic [ref=e196]: Scala
+                        - generic [ref=e197]: Kafka
+                        - generic [ref=e198]: RESTful APIs
+                        - generic [ref=e199]: Microservices
+                - generic [ref=e200]:
+                    - generic [ref=e201]:
+                        - img [ref=e203]
+                        - heading "DevOps & Cloud" [level=3] [ref=e205]
+                    - generic [ref=e206]:
+                        - generic [ref=e207]: AWS (ECS, S3, CloudFront, Secrets)
+                        - generic [ref=e208]: Docker
+                        - generic [ref=e209]: CI/CD (GitHub Actions, Jenkins)
+                        - generic [ref=e210]: IaC (Terraform)
+                        - generic [ref=e211]: Monitoring (Grafana, CloudWatch)
+                - generic [ref=e212]:
+                    - generic [ref=e213]:
+                        - img [ref=e215]
+                        - heading "Data & Security" [level=3] [ref=e218]
+                    - generic [ref=e219]:
+                        - generic [ref=e220]: PostgreSQL
+                        - generic [ref=e221]: MongoDB
+                        - generic [ref=e222]: Redis
+                        - generic [ref=e223]: NoSQL
+                        - generic [ref=e224]: Snyk / SonarQube
+                        - generic [ref=e225]: Data Decoupling
+                - generic [ref=e226]:
+                    - generic [ref=e227]:
+                        - img [ref=e229]
+                        - heading "AI & Innovation" [level=3] [ref=e232]
+                    - generic [ref=e233]:
+                        - generic [ref=e234]: AI Agent Integration
+                        - generic [ref=e235]: Generative AI APIs
+                        - generic [ref=e236]: Prompt Engineering
+                        - generic [ref=e237]: Model Fallback Strategies
+                        - generic [ref=e238]: AI-Driven Automation
+        - generic [ref=e240]:
+            - generic [ref=e242]:
+                - heading "Featured Projects" [level=2] [ref=e243]
+                - paragraph [ref=e245]: From AI-driven storytelling to real-world e-commerce solutions.
+            - generic [ref=e246]:
+                - generic [ref=e247]:
+                    - generic [ref=e248]:
+                        - generic [ref=e250]:
+                            - img [ref=e251]
+                            - text: Live
+                        - img "Adventure Forge" [ref=e253]
+                    - generic [ref=e254]:
+                        - heading "Adventure Forge" [level=3] [ref=e255]
+                        - paragraph [ref=e256]: An AI-powered 'choose your own adventure' engine. Built with a high-availability fallback system for LLMs and image generation models, featuring persistent game states and multi-genre support.
+                        - generic [ref=e257]:
+                            - generic [ref=e258]: React
+                            - generic [ref=e259]: AI Agents
+                            - generic [ref=e260]: NestJS
+                            - generic [ref=e261]: MongoDB
+                            - generic [ref=e262]: Google OAuth
+                            - generic [ref=e263]: Generative AI
+                        - generic [ref=e264]:
+                            - link "Code" [ref=e265]:
+                                - /url: https://github.com/guillermopr94/adventure-forge
+                                - img [ref=e266]
+                                - text: Code
+                            - link "Live Demo" [ref=e269]:
+                                - /url: https://guillermopr94.github.io/adventure-forge/
+                                - text: Live Demo
+                                - img [ref=e270]
+                - generic [ref=e274]:
+                    - generic [ref=e275]:
+                        - generic [ref=e277]:
+                            - img [ref=e278]
+                            - text: In Development
+                        - img "Galactic Conquest" [ref=e280]
+                    - generic [ref=e281]:
+                        - heading "Galactic Conquest" [level=3] [ref=e282]
+                        - paragraph [ref=e283]: A space-themed procedural deckbuilder roguelike. Utilizes AI to dynamically generate cards, encounters, and world content via modular JSON architectures.
+                        - generic [ref=e284]:
+                            - generic [ref=e285]: React 19
+                            - generic [ref=e286]: Vite
+                            - generic [ref=e287]: Lucide
+                            - generic [ref=e288]: AI Integration
+                            - generic [ref=e289]: Procedural Generation
+                        - link "Code" [ref=e291]:
+                            - /url: https://github.com/guillermopr94/galactic-conquest
+                            - img [ref=e292]
+                            - text: Code
+                - generic [ref=e295]:
+                    - generic [ref=e296]:
+                        - generic [ref=e298]:
+                            - img [ref=e299]
+                            - text: Live
+                        - img "Crear es Arte" [ref=e301]
+                    - generic [ref=e302]:
+                        - heading "Crear es Arte" [level=3] [ref=e303]
+                        - paragraph [ref=e304]: Professional e-commerce platform for artisan crafts. Features automated deployment pipelines, SEO optimization, and a seamless checkout experience.
+                        - generic [ref=e305]:
+                            - generic [ref=e306]: React
+                            - generic [ref=e307]: Vercel
+                            - generic [ref=e308]: E-commerce
+                            - generic [ref=e309]: Deployment Automation
+                        - generic [ref=e310]:
+                            - link "Code" [ref=e311]:
+                                - /url: https://github.com/guillermopr94/crearesarte
+                                - img [ref=e312]
+                                - text: Code
+                            - link "Live Demo" [ref=e315]:
+                                - /url: https://crearesarte.vercel.app/
+                                - text: Live Demo
+                                - img [ref=e316]
+        - generic [ref=e321]:
+            - generic [ref=e322]:
+                - heading "Get In Touch" [level=2] [ref=e323]
+                - paragraph [ref=e325]: Have a question or want to work together? My inbox is always open.
+            - generic [ref=e326]:
+                - generic [ref=e327]:
+                    - generic [ref=e328]:
+                        - heading "Contact Information" [level=3] [ref=e329]:
+                            - img [ref=e330]
+                            - text: Contact Information
+                        - generic [ref=e332]:
+                            - link "Email guillermoperezruiz94@gmail.com" [ref=e333]:
+                                - /url: mailto:guillermoperezruiz94@gmail.com
+                                - img [ref=e335]
+                                - generic [ref=e338]:
+                                    - generic [ref=e339]: Email
+                                    - generic [ref=e340]: guillermoperezruiz94@gmail.com
+                            - link "LinkedIn guillermo-perez-ruiz" [ref=e341]:
+                                - /url: https://www.linkedin.com/in/guillermo-perez-ruiz-569a3815b/
+                                - img [ref=e343]
+                                - generic [ref=e347]:
+                                    - generic [ref=e348]: LinkedIn
+                                    - generic [ref=e349]: guillermo-perez-ruiz
+                            - link "GitHub guillermopr94" [ref=e350]:
+                                - /url: https://github.com/guillermopr94
+                                - img [ref=e352]
+                                - generic [ref=e355]:
+                                    - generic [ref=e356]: GitHub
+                                    - generic [ref=e357]: guillermopr94
+                            - button "Open resume preview modal" [ref=e358] [cursor=pointer]:
+                                - img [ref=e359]
+                                - generic [ref=e362]: View Full Resume
+                    - generic [ref=e363]:
+                        - heading "Let's build something amazing" [level=4] [ref=e364]
+                        - paragraph [ref=e365]: I'm currently open to new opportunities and interesting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                - form "Contact form" [ref=e367]:
+                    - generic [ref=e368]:
+                        - generic [ref=e369]:
+                            - text: Name
+                            - textbox "Name" [ref=e370]:
+                                - /placeholder: Your Name
+                        - generic [ref=e371]:
+                            - text: Email
+                            - textbox "Email" [ref=e372]:
+                                - /placeholder: your@email.com
+                    - generic [ref=e373]:
+                        - text: Subject
+                        - textbox "Subject" [ref=e374]:
+                            - /placeholder: What's this about?
+                    - generic [ref=e375]:
+                        - text: Message
+                        - textbox "Message" [ref=e376]:
+                            - /placeholder: Your message here...
+                    - button "Send contact message" [ref=e377]:
+                        - text: Send Message
+                        - img [ref=e378]
+                    - paragraph [ref=e381]: 'Note: This form is currently visual only. API integration coming soon.'
+    - contentinfo [ref=e382]:
+        - generic [ref=e384]:
+            - generic [ref=e385]:
+                - generic [ref=e386]:
+                    - generic [ref=e387]:
+                        - img [ref=e389]
+                        - generic [ref=e391]: GPR.dev
+                    - paragraph [ref=e392]: Tech Lead & Senior Full-Stack Engineer. Building scalable solutions and leading teams with a hands-on approach.
+                - generic [ref=e393]:
+                    - heading "Let's Connect" [level=3] [ref=e394]
+                    - generic [ref=e395]:
+                        - link "LinkedIn":
+                            - /url: https://www.linkedin.com/in/guillermo-perez-ruiz-569a3815b/
+                        - link "GitHub":
+                            - /url: https://github.com/guillermopr94
+                        - link "Email":
+                            - /url: mailto:guillermoperezruiz94@gmail.com
+            - generic [ref=e396]:
+                - paragraph [ref=e397]: © 2026 Guillermo Pérez Ruiz. All rights reserved.
+                - generic [ref=e398]:
+                    - generic [ref=e399]: Built with React, Tailwind &
+                    - img [ref=e401]
+```
