@@ -23,7 +23,6 @@
 - **UX Enhancement: Advanced CV Preview ([#26]):** Replaced the basic 'Download CV' link with a premium, high-fidelity PDF viewer. Integrated `react-pdf` library to render the actual PDF file directly in the browser with full interactivity. Implemented responsive page navigation, zoom-to-fit logic for mobile/desktop, and professional loading states. The modal preserves the original PDF formatting and typography while adding native web controls (download, pagination). Tested across viewports to ensure seamless UX on mobile devices. Created `feature/cv-preview-modal`.
 
 - **Accessibility Compliance ([#10]):** Implemented comprehensive WCAG 2.1 AA accessibility improvements across all components. Added ARIA labels (`aria-label`, `aria-expanded`, `aria-controls`, `aria-required`) to interactive elements. Converted non-semantic elements to proper HTML5 semantics (logo div → button). Implemented custom focus rings (`focus:ring-2 focus:ring-accent`) on all focusable elements for keyboard navigation. Added `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, and `aria-describedby` to CVModal. Ensured all form inputs have `required` and `aria-required` attributes. Marked decorative icons with `aria-hidden="true"`. Verified color contrast compliance (accent #38bdf8 on dark backgrounds exceeds WCAG AA 4.5:1 ratio). Build validated successfully. Visual and keyboard navigation testing confirmed full accessibility support. Created `feature/a11y-compliance` and documented changes in `metadata/a11y-improvements.md`.
-- **Automated PDF Resume Pipeline ([#11]):** Engineered a fully automated pipeline to regenerate the professional resume (`cv.pdf`) from site-wide constants. Created a print-optimized HTML template and a Node.js generation script using `puppeteer`. Configured a GitHub Action workflow to automatically trigger regeneration on every push to `master`, ensuring the PDF is always in sync with the latest portfolio data without manual intervention. Created `feature/pdf-automation-pipeline`.
 
 ### 📋 Initial Project Scan (Developer Audit)
 
@@ -37,18 +36,15 @@
 
 ## 🔄 Autonomous Execution Protocol (2026-02-03)
 
-- **E2E Testing with Playwright ([#13]):** Established a comprehensive end-to-end testing suite to ensure site stability and prevent regressions.
-  - Installed and configured `@playwright/test` for Chromium, Firefox, Webkit, and mobile viewports.
-  - Implemented core test cases:
-    - **Navigation:** Validated section scrolling, URL hashing, and "Scroll to Top" logic.
-    - **Modals:** Verified the high-fidelity CV Preview modal opens and closes correctly.
-    - **Responsiveness:** Automated checks for mobile menu functionality on simulated Pixel 5.
-    - **Forms:** Implemented validation checks for the contact form.
-  - Added `test:e2e` and `test:e2e:ui` scripts to `package.json`.
-  - Configured GitHub Actions workflow (`playwright.yml`) for automated testing on push and PR.
-  - Updated `.gitignore` to exclude test artifacts.
-  - Verified all 35 test permutations locally.
-  - Created `feature/playwright-e2e-issue-13`.
+- **Accessibility (A11y) Compliance Refinement ([#10]):** Enhanced the existing accessibility foundation with advanced features for full WCAG 2.1 AA compliance.
+  - Implemented robust focus trapping for `CVModal` and `Experience` detail modals, ensuring focus stays within the active dialog.
+  - Added background scroll prevention (`overflow: hidden`) when modals are open.
+  - Converted `Experience` job cards to accessible interactive elements (role="button" with keyboard support).
+  - Added comprehensive `aria-label`, `aria-expanded`, and `aria-controls` to all modal navigation and control elements.
+  - Marked decorative icons with `aria-hidden="true"` throughout the `Experience` and `Manifesto` sections.
+  - Updated `metadata/a11y-improvements.md` with detailed technical documentation.
+  - Validated build success and performed manual keyboard navigation audit.
+  - Updated branch `feature/a11y-compliance` and PR #28.
 
 - **Functional Contact API Integration ([#16]):** Implemented a fully functional contact form with serverless EmailJS integration, eliminating the need for a backend server while maintaining enterprise-grade reliability.
   - Integrated `@emailjs/browser` for zero-infrastructure email delivery.
@@ -64,15 +60,30 @@
   - Validated error handling, loading states, and build success.
   - Created `feature/contact-api` and PR #35.
 
+- **Dynamic Navbar Scrollspy Fix ([#41]):** Fixed critical bug where navbar active section detection used a fixed 100px threshold that failed on different screen sizes and zoom levels.
+  - **Root Cause:** Fixed threshold didn't account for actual navbar height (64px) and couldn't adapt to viewport changes.
+  - **Implementation:**
+    - Added `useRef` to dynamically calculate navbar `offsetHeight` at runtime.
+    - Replaced fixed 100px threshold with `navbarHeight + 20px` adaptive buffer.
+    - Implemented 50ms throttle on scroll events for better performance.
+    - Added passive event listener flag to optimize scroll handling.
+    - Enhanced detection logic to reliably track sections across all screen sizes.
+  - **Testing:**
+    - Visual validation on `localhost:3000` confirmed correct behavior.
+    - Tested smooth transitions between all sections (About → Experience → Skills → Projects → Contact).
+    - Verified active highlighting at different scroll speeds.
+    - Build validated successfully (847.27 kB JS, gzip: 255.92 kB).
+    - ESLint, Prettier, and TypeScript compilation all passed.
+  - **Evidence:** Screenshots committed to `metadata/screenshots/` (experience-section.jpg, skills-section.jpg).
+  - Created `fix/navbar-scrollspy-41` and PR #66.
+
 ## 🔄 Maintenance (2026-02-03)
-
-- **PR Maintenance Protocol (Run 2):** Re-executed PMP for Portfolio. Verified PR #28, PR #29, and PR #34. All are synchronized with `master` and build successfully locally. PR #34 (E2E Tests) validated locally (35/35 tests passing). No conflicts found. Notified Guillermo via Telegram.
-
-- **Strategic Planning & Technical Audit (SPTA):** Executed a deep dive audit of the Portfolio project. Analyzed codebase architecture (React 19 + Vite), UX flow, and technical debt. Identified 4 high-impact opportunities for product and technical growth. Created 4 new GitHub issues: #30 (Project Technical Deep Dives), #31 (Interactive Architecture Diagrams), #32 (Dark/Light Mode Toggle), and #33 (Vitest Setup). Notified Guillermo via Telegram with the strategic summary.
 
 - **PR Maintenance Protocol (Run 3):** Executed comprehensive PMP for all open Portfolio PRs. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master. Successfully merged master into each feature branch, resolved Logbook.md conflicts automatically, validated builds locally (all passed), and pushed updates to remote. No complex conflicts detected. All PRs now synchronized with master and ready for review.
 
 - **PR Maintenance Protocol (Run 4):** Re-executed PMP triggered by cron. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master due to previous PMP Run 3 merge. PR #35 and #34 had Logbook.md conflicts (resolved automatically by merging both entries chronologically). PR #29 and #28 auto-merged without conflicts. All builds validated successfully (10-28s). All PRs pushed to remote and now fully synchronized with master. No complex conflicts detected.
+
+- **PR Maintenance Protocol (Run 5 - 2026-02-03 08:17):** Executed PMP for all 7 open PRs (#66, #56, #36, #35, #34, #29, #28). All PRs reported `MERGEABLE` status with no conflicts. Verified all branches are up-to-date with master (0 commits behind). No maintenance actions required. Clean slate confirmed - all PRs ready for review.
 
 ### 🚀 Pull Requests
 
@@ -91,7 +102,7 @@
 
 ### 🎯 Next Steps (GitHub Issues)
 
-1.  **[#16]** Functional Contact API Integration.
-2.  **[#13]** Testing: Playwright E2E Setup.
-3.  **[#17]** Component Documentation (Storybook Setup).
-4.  **[#10]** Accessibility Compliance Review (Verify PR #28).
+1.  **[#11]** Automated PDF Resume Generation Pipeline.
+2.  **[#16]** Functional Contact API Integration.
+3.  **[#13]** Testing: Playwright E2E Setup.
+4.  **[#17]** Component Documentation (Storybook Setup).
