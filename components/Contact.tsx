@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mail,
   Linkedin,
@@ -7,11 +7,71 @@ import {
   Send,
   MessageSquare,
   FileText,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import CVModal from './CVModal';
+
+type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const Contact: React.FC = () => {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const [status, setStatus] = useState<SubmissionStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    // Honeypot check
+    const formData = new FormData(formRef.current);
+    if (formData.get('bot-field')) {
+      console.warn('Bot detected');
+      return;
+    }
+
+    setStatus('loading');
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (
+        !serviceId ||
+        !templateId ||
+        !publicKey ||
+        serviceId === 'YOUR_SERVICE_ID'
+      ) {
+        throw new Error(
+          'EmailJS configuration is missing. Please set up your environment variables.',
+        );
+      }
+
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+
+      setStatus('success');
+      formRef.current.reset();
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Email submission error:', error);
+      setStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again later.',
+      );
+
+      // Reset error message after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 bg-slate-950 relative scroll-mt-20">
@@ -140,49 +200,58 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl"
+            className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl relative overflow-hidden"
           >
             <form
+              ref={formRef}
               className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                // API integration placeholder
-              }}
+              onSubmit={handleSubmit}
               aria-label="Contact form"
             >
+              {/* Honeypot field */}
+              <input
+                type="text"
+                name="bot-field"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label
-                    htmlFor="name"
+                    htmlFor="from_name"
                     className="text-sm font-medium text-slate-400 ml-1"
                   >
                     Name
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="from_name"
+                    name="from_name"
                     placeholder="Your Name"
                     required
                     aria-required="true"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
+                    disabled={status === 'loading'}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all disabled:opacity-50"
                   />
                 </div>
                 <div className="space-y-2">
                   <label
-                    htmlFor="email"
+                    htmlFor="reply_to"
                     className="text-sm font-medium text-slate-400 ml-1"
                   >
                     Email
                   </label>
                   <input
                     type="email"
-                    id="email"
-                    name="email"
+                    id="reply_to"
+                    name="reply_to"
                     placeholder="your@email.com"
                     required
                     aria-required="true"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
+                    disabled={status === 'loading'}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all disabled:opacity-50"
                   />
                 </div>
               </div>
@@ -201,7 +270,8 @@ const Contact: React.FC = () => {
                   placeholder="What's this about?"
                   required
                   aria-required="true"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
+                  disabled={status === 'loading'}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all disabled:opacity-50"
                 />
               </div>
 
@@ -219,28 +289,66 @@ const Contact: React.FC = () => {
                   placeholder="Your message here..."
                   required
                   aria-required="true"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none"
+                  disabled={status === 'loading'}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none disabled:opacity-50"
                 ></textarea>
               </div>
 
               <motion.button
                 type="submit"
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: '0 0 20px rgba(56,189,248,0.4)',
-                }}
-                whileTap={{ scale: 0.98 }}
+                disabled={status === 'loading'}
+                whileHover={
+                  status === 'loading'
+                    ? {}
+                    : {
+                        scale: 1.02,
+                        boxShadow: '0 0 20px rgba(56,189,248,0.4)',
+                      }
+                }
+                whileTap={status === 'loading' ? {} : { scale: 0.98 }}
                 aria-label="Send contact message"
-                className="w-full py-4 bg-accent text-slate-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-sky-300 transition-colors shadow-lg shadow-accent/20"
+                className="w-full py-4 bg-accent text-slate-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-sky-300 transition-colors shadow-lg shadow-accent/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
-                <Send className="w-5 h-5" aria-hidden="true" />
+                {status === 'loading' ? (
+                  <>
+                    Sending...
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="w-5 h-5" aria-hidden="true" />
+                  </>
+                )}
               </motion.button>
 
-              <p className="text-center text-xs text-slate-500 italic">
-                Note: This form is currently visual only. API integration coming
-                soon.
-              </p>
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex items-center justify-center gap-2 text-green-400 font-medium"
+                  >
+                    <CheckCircle2 className="w-5 h-5" />
+                    Message sent successfully!
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex flex-col items-center justify-center gap-1 text-red-400 font-medium text-sm text-center"
+                  >
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-5 h-5" />
+                      Error sending message
+                    </div>
+                    <p className="opacity-80">{errorMessage}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </form>
           </motion.div>
         </div>

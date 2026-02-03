@@ -24,7 +24,55 @@ I lead teams and projects from the code, combining architectural decision-making
 - **Adventure Forge:** AI-driven interactive storytelling platform powered by Google GenAI.
 - **Galactic Conquest:** Procedural space strategy game (Under development).
 
+## 🔧 Local Development
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+📖 **See [EMAILJS_SETUP.md](./EMAILJS_SETUP.md) for detailed configuration instructions.**
+
+### Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## 📧 Contact Form
+
+The contact form is powered by [EmailJS](https://www.emailjs.com/) for serverless email delivery. Features include:
+
+- ✅ Client-side validation
+- ✅ Loading states & error handling
+- ✅ Anti-spam honeypot protection
+- ✅ Success/error feedback
+
 ---
+
 Developed with **React + Vite**.
 
 [🌍 View Live](https://guillermo-perez-ruiz-portfolio.vercel.app/)
