@@ -21,6 +21,53 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Handle focus trapping
+  useEffect(() => {
+    if (isOpen) {
+      const focusableElements = containerRef.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      const firstElement = focusableElements?.[0] as HTMLElement;
+      const lastElement = focusableElements?.[
+        focusableElements.length - 1
+      ] as HTMLElement;
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+
+      // Set initial focus to close button
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
+
+      window.addEventListener('keydown', handleKeyDown);
+      // Prevent scrolling on background
+      document.body.style.overflow = 'hidden';
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'unset';
+      };
+    }
+  }, [isOpen, onClose]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -60,6 +107,10 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cv-modal-title"
+          aria-describedby="cv-modal-description"
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md"
           onClick={onClose}
         >
@@ -74,12 +125,18 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="flex items-center justify-between p-4 md:p-6 border-b border-slate-800 bg-slate-900/50">
               <div className="flex flex-col">
-                <h2 className="text-lg md:text-xl font-bold text-white flex items-center gap-2">
+                <h2
+                  id="cv-modal-title"
+                  className="text-lg md:text-xl font-bold text-white flex items-center gap-2"
+                >
                   <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                   Professional Resume
                 </h2>
                 {numPages && (
-                  <p className="text-xs text-slate-400">
+                  <p
+                    id="cv-modal-description"
+                    className="text-xs text-slate-400"
+                  >
                     Page {pageNumber} of {numPages}
                   </p>
                 )}
@@ -97,8 +154,10 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                   <span className="hidden sm:inline">Download PDF</span>
                 </motion.a>
                 <button
+                  ref={closeButtonRef}
                   onClick={onClose}
-                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors"
+                  aria-label="Close resume modal"
+                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
                 >
                   <X size={24} />
                 </button>
@@ -154,7 +213,8 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 <button
                   disabled={pageNumber <= 1}
                   onClick={previousPage}
-                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all"
+                  aria-label="Previous page"
+                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all focus:outline-none focus:ring-2 focus:ring-accent"
                 >
                   <ChevronLeft size={24} />
                 </button>
@@ -164,7 +224,8 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 <button
                   disabled={pageNumber >= (numPages || 1)}
                   onClick={nextPage}
-                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all"
+                  aria-label="Next page"
+                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full disabled:opacity-30 disabled:hover:bg-transparent transition-all focus:outline-none focus:ring-2 focus:ring-accent"
                 >
                   <ChevronRight size={24} />
                 </button>
