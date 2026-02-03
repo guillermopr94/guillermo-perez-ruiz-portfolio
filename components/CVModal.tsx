@@ -27,7 +27,7 @@ const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       const focusableElements = containerRef.current?.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
       const firstElement = focusableElements?.[0] as HTMLElement;
       const lastElement = focusableElements?.[
