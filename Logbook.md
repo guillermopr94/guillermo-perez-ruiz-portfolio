@@ -77,6 +77,25 @@
   - **Evidence:** Screenshots committed to `metadata/screenshots/` (experience-section.jpg, skills-section.jpg).
   - Created `fix/navbar-scrollspy-41` and PR #66.
 
+- **Projects Image CLS & Skeleton Fix ([#42]):** Fixed critical UX issue where project images caused layout shift during loading and lacked visual feedback.
+  - **Root Cause:** Images loaded lazily without reserved space or placeholders, causing "jumps" in the layout when they appeared.
+  - **Implementation:**
+    - Created a premium `ProjectImage.tsx` component to encapsulate loading logic.
+    - Implemented a pulse skeleton animation using Framer Motion and Tailwind CSS.
+    - Added a custom "Image unavailable" error state with icon for broken links.
+    - Engineered a smooth fade-in and scale-up entrance animation (500ms duration).
+    - Preserved `aspect-video` (16:9) ratio in the container to eliminate Cumulative Layout Shift (CLS).
+    - Integrated grayscale-to-color transition on group hover for enhanced interactivity.
+    - Optimized bundle by reusing existing `framer-motion` and `lucide-react` dependencies.
+  - **Testing:**
+    - Visual validation on `localhost:3000` confirmed zero layout shift.
+    - Verified skeleton state by simulating slow network speed.
+    - Tested error fallback by providing invalid image paths.
+    - Build validated successfully (852.96 kB JS, gzip: 257.28 kB).
+    - Prettier and ESLint passed.
+  - **Evidence:** Screenshot committed to `metadata/screenshots/issue-42-projects-cls-skeleton.jpg`.
+  - Created `fix/projects-cls-skeleton-42` and PR #68.
+
 ## 🔄 Maintenance (2026-02-03)
 
 - **PR Maintenance Protocol (Run 3):** Executed comprehensive PMP for all open Portfolio PRs. All 4 PRs (#35, #34, #29, #28) were 1 commit behind master. Successfully merged master into each feature branch, resolved Logbook.md conflicts automatically, validated builds locally (all passed), and pushed updates to remote. No complex conflicts detected. All PRs now synchronized with master and ready for review.

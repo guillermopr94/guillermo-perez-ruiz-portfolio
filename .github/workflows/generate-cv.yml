@@ -1,0 +1,38 @@
+name: Regenerate CV PDF
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'constants.tsx'
+      - 'scripts/generate-pdf.ts'
+      - 'package.json'
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate PDF
+        run: npm run generate-pdf
+
+      - name: Commit and push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: automatically regenerate cv.pdf [skip ci]"
+          file_pattern: 'public/cv.pdf'
+          branch: master
