@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EXPERIENCE_DATA } from '../constants';
 import { 
@@ -69,6 +69,49 @@ const Experience: React.FC = () => {
 
   const modalJob = EXPERIENCE_DATA.find(job => job.id === modalJobId);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Focus trapping for Experience Modal
+  useEffect(() => {
+    if (modalJobId) {
+      const focusableElements = containerRef.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements?.[0] as HTMLElement;
+      const lastElement = focusableElements?.[
+        focusableElements.length - 1
+      ] as HTMLElement;
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      };
+
+      // Set initial focus
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [modalJobId]);
+
   return (
     <section id="experience" className="py-20 bg-slate-950 relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,8 +150,18 @@ const Experience: React.FC = () => {
 
                   <div className={`flex-1 w-full ${isEven ? 'md:pr-12' : 'md:pl-12'}`}>
                     <div 
-                      className={`bg-slate-900 border border-slate-800 rounded-xl p-5 md:p-6 transition-all duration-300 hover:border-accent/30 cursor-pointer group ${isExpanded ? 'ring-1 ring-accent/20 bg-slate-800/50' : ''}`}
+                      role="button"
+                      tabIndex={0}
+                      className={`w-full text-left bg-slate-900 border border-slate-800 rounded-xl p-5 md:p-6 transition-all duration-300 hover:border-accent/30 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-accent ${isExpanded ? 'ring-1 ring-accent/20 bg-slate-800/50' : ''}`}
                       onClick={() => toggleExpand(job.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          toggleExpand(job.id);
+                        }
+                      }}
+                      aria-expanded={isExpanded}
+                      aria-controls={`job-details-${job.id}`}
                     >
                       <div className="flex justify-between items-start mb-2">
                         <div>
@@ -195,23 +248,29 @@ const Experience: React.FC = () => {
             ></motion.div>
             
             <motion.div 
+              ref={containerRef}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="experience-modal-title"
               className="relative w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[95vh] md:min-h-[550px]"
             >
               <button 
+                ref={closeButtonRef}
                 onClick={closeModal}
-                className="absolute top-4 right-4 z-[110] p-2 bg-slate-800/80 rounded-full text-slate-400 hover:text-white transition-colors"
+                aria-label="Close details modal"
+                className="absolute top-4 right-4 z-[110] p-2 bg-slate-800/80 rounded-full text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               >
-                <X className="w-5 h-5 md:w-6 md:h-6" />
+                <X className="w-5 h-5 md:w-6 md:h-6" aria-hidden="true" />
               </button>
 
               {/* Sidebar / Info */}
               <div className="w-full md:w-[350px] bg-slate-800/40 p-5 md:p-8 flex flex-col border-b md:border-b-0 md:border-r border-slate-800 shrink-0 overflow-y-auto">
                 <div className="mb-4 md:mb-8">
                   <div className="text-accent text-[10px] md:text-xs font-bold tracking-widest uppercase mb-2">Technical Deep Dive</div>
-                  <h3 className="text-lg md:text-2xl font-bold text-white mb-1 leading-tight">{modalJob.company}</h3>
+                  <h3 id="experience-modal-title" className="text-lg md:text-2xl font-bold text-white mb-1 leading-tight">{modalJob.company}</h3>
                   <div className="text-slate-400 text-[10px] md:text-sm">{modalJob.role}</div>
                 </div>
 
@@ -223,7 +282,8 @@ const Experience: React.FC = () => {
                       <button
                         key={idx}
                         onClick={() => setCurrentSlide(idx)}
-                        className={`min-w-[140px] md:min-w-0 text-left p-3 md:p-4 rounded-xl border transition-all flex items-center gap-2 md:gap-4 ${isActive ? 'bg-accent border-accent text-slate-900 shadow-lg shadow-accent/20' : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'}`}
+                        aria-label={`View milestone: ${detail.title}`}
+                        className={`min-w-[140px] md:min-w-0 text-left p-3 md:p-4 rounded-xl border transition-all flex items-center gap-2 md:gap-4 focus:outline-none focus:ring-2 focus:ring-slate-400 ${isActive ? 'bg-accent border-accent text-slate-900 shadow-lg shadow-accent/20' : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'}`}
                       >
                         <div className={`p-1.5 md:p-2 rounded-lg flex-shrink-0 ${isActive ? 'bg-slate-900/20' : 'bg-slate-800'}`}>
                           <Icon className="w-3.5 h-3.5 md:w-5 md:h-5" />
@@ -271,9 +331,10 @@ const Experience: React.FC = () => {
                   <button 
                     onClick={() => setCurrentSlide(prev => Math.max(0, prev - 1))}
                     disabled={currentSlide === 0}
-                    className="p-2.5 md:p-4 bg-slate-800 rounded-xl md:rounded-2xl text-slate-400 hover:text-white disabled:opacity-10 transition-all border border-slate-700 hover:border-slate-600"
+                    aria-label="Previous milestone"
+                    className="p-2.5 md:p-4 bg-slate-800 rounded-xl md:rounded-2xl text-slate-400 hover:text-white disabled:opacity-10 transition-all border border-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-accent"
                   >
-                    <ArrowLeft className="w-4 h-4 md:w-7 md:h-7" />
+                    <ArrowLeft className="w-4 h-4 md:w-7 md:h-7" aria-hidden="true" />
                   </button>
                   
                   <div className="text-[9px] md:text-[10px] text-slate-500 font-mono tracking-widest">
@@ -283,9 +344,10 @@ const Experience: React.FC = () => {
                   <button 
                     onClick={() => setCurrentSlide(prev => Math.min((modalJob.details?.length || 1) - 1, prev + 1))}
                     disabled={currentSlide === (modalJob.details?.length || 1) - 1}
-                    className="p-2.5 md:p-4 bg-accent rounded-xl md:rounded-2xl text-slate-900 hover:bg-sky-300 disabled:opacity-10 transition-all shadow-xl shadow-accent/10"
+                    aria-label="Next milestone"
+                    className="p-2.5 md:p-4 bg-accent rounded-xl md:rounded-2xl text-slate-900 hover:bg-sky-300 disabled:opacity-10 transition-all shadow-xl shadow-accent/10 focus:outline-none focus:ring-2 focus:ring-slate-400"
                   >
-                    <ArrowRight className="w-4 h-4 md:w-7 md:h-7" />
+                    <ArrowRight className="w-4 h-4 md:w-7 md:h-7" aria-hidden="true" />
                   </button>
                 </div>
               </div>

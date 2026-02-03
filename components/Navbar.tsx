@@ -45,11 +45,12 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex-shrink-0 flex items-center gap-2 cursor-pointer"
+            className="flex-shrink-0 flex items-center gap-2 cursor-pointer bg-transparent border-none focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950 rounded-lg"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Scroll to top"
           >
             <motion.div
               animate={{
@@ -64,7 +65,7 @@ const Navbar: React.FC = () => {
             <span className="text-xl font-bold font-mono tracking-tighter text-slate-100">
               GPR<span className="text-accent">.dev</span>
             </span>
-          </motion.div>
+          </motion.button>
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
@@ -79,7 +80,7 @@ const Navbar: React.FC = () => {
                     transition={{ delay: 0.1 * index, duration: 0.5 }}
                     whileHover={{ scale: 1.1, color: '#38bdf8' }}
                     whileTap={{ scale: 0.95 }}
-                    className={`${isActive ? 'text-accent' : 'text-slate-300'} hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative group`}
+                    className={`${isActive ? 'text-accent' : 'text-slate-300'} hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative group focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950`}
                   >
                     {link.name}
                     <motion.span
@@ -97,7 +98,12 @@ const Navbar: React.FC = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
+              aria-label={
+                isOpen ? 'Close navigation menu' : 'Open navigation menu'
+              }
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-950"
             >
               <AnimatePresence mode="wait">
                 {isOpen ? (
@@ -130,6 +136,9 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
+            role="navigation"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
