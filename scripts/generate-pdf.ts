@@ -11,6 +11,7 @@ import {
   EXPERIENCE_DATA,
   SKILLS_DATA,
   SOCIAL_LINKS,
+  PROJECTS_DATA,
 } from '../constants';
 
 const generateHTML = () => {
@@ -24,7 +25,6 @@ const generateHTML = () => {
         <span class="exp-period">${exp.period}</span>
       </div>
       <div class="exp-company">${exp.company} | ${exp.location}</div>
-      <p class="exp-description">${exp.description}</p>
       <ul class="exp-achievements">
         ${exp.achievements.map((ach) => `<li>${ach}</li>`).join('')}
       </ul>
@@ -35,10 +35,24 @@ const generateHTML = () => {
   `,
   ).join('');
 
+  const projectsHTML = PROJECTS_DATA.slice(0, 2)
+    .map(
+      (project) => `
+    <div class="project-item">
+      <div class="project-header">
+        <span class="project-title">${project.title}</span>
+        <span class="project-status">${project.status}</span>
+      </div>
+      <p class="project-desc">${project.description}</p>
+    </div>
+  `,
+    )
+    .join('');
+
   const skillsHTML = SKILLS_DATA.map(
     (cat) => `
     <div class="skill-category">
-      <h3>⚡ ${cat.name}</h3>
+      <h3>${cat.name}</h3>
       <div class="skill-list">
         ${cat.skills.map((skill) => `<span class="skill-item">${skill}</span>`).join(' • ')}
       </div>
@@ -46,12 +60,18 @@ const generateHTML = () => {
   `,
   ).join('');
 
-  // Create clickable contact links
   const contactHTML = SOCIAL_LINKS.map((link) => {
-    const displayText = link.url
-      .replace('mailto:', '')
-      .replace('https://', '')
-      .replace('www.', '');
+    const displayText =
+      link.url
+        .replace('mailto:', '')
+        .replace('https://', '')
+        .replace('www.', '')
+        .split('/')[1] ||
+      link.url
+        .replace('mailto:', '')
+        .replace('https://', '')
+        .replace('www.', '');
+
     const icon =
       link.name === 'Email'
         ? '📧'
@@ -59,14 +79,15 @@ const generateHTML = () => {
           ? '💼'
           : link.name === 'GitHub'
             ? '🐙'
-            : link.name === 'Twitter'
-              ? '🐦'
-              : '🔗';
+            : '🔗';
+
     return `
-      <div class="contact-link">
+      <div class="contact-item">
         <span class="contact-icon">${icon}</span>
-        <strong>${link.name}:</strong> 
-        <a href="${link.url}" target="_blank">${displayText}</a>
+        <div class="contact-info">
+          <span class="contact-label">${link.name}</span>
+          <a href="${link.url}" target="_blank">${displayText}</a>
+        </div>
       </div>
     `;
   }).join('');
@@ -89,7 +110,7 @@ const generateHTML = () => {
           --text: #334155;
           --text-light: #64748b;
           --border: #e2e8f0;
-          --bg-light: #f8fafc;
+          --sidebar-bg: #1e293b;
         }
         * {
           box-sizing: border-box;
@@ -98,220 +119,256 @@ const generateHTML = () => {
         }
         body {
           font-family: 'Inter', sans-serif;
-          line-height: 1.6;
+          line-height: 1.4;
           color: var(--text);
           margin: 0;
           padding: 0;
-          font-size: 10pt;
+          font-size: 9pt;
           background: white;
         }
-        .container {
-          width: 100%;
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 40px;
-        }
-        header {
-          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-          color: white;
-          padding: 30px;
-          margin: -40px -40px 30px -40px;
-          border-radius: 0 0 20px 20px;
-        }
-        .header-main h1 {
-          margin: 0;
-          font-size: 32pt;
-          font-weight: 800;
-          color: white;
-          letter-spacing: -0.025em;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header-main h2 {
-          margin: 8px 0 0;
-          font-size: 16pt;
-          font-weight: 600;
-          color: var(--accent);
-          text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .header-contact {
-          margin-top: 20px;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-          font-size: 9pt;
-        }
-        .contact-link {
+        .wrapper {
           display: flex;
+          min-height: 297mm;
+        }
+        
+        .sidebar {
+          width: 30%;
+          background: var(--sidebar-bg);
+          color: white;
+          padding: 30px 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+        .sidebar h3 {
+          font-size: 11pt;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--accent);
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          padding-bottom: 8px;
+          margin: 0 0 15px 0;
+        }
+        .contact-item {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 15px;
           align-items: center;
-          gap: 5px;
-          color: rgba(255,255,255,0.9);
         }
         .contact-icon {
-          font-size: 12pt;
+          font-size: 14pt;
+          width: 24px;
+          text-align: center;
         }
-        .contact-link a {
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+        }
+        .contact-label {
+          font-size: 7pt;
+          text-transform: uppercase;
+          color: var(--text-light);
+          font-weight: 700;
+        }
+        .contact-info a {
+          color: white;
+          text-decoration: none;
+          font-size: 8.5pt;
+          word-break: break-all;
+        }
+        .sidebar-web {
+          background: rgba(56, 189, 248, 0.1);
+          padding: 15px;
+          border-radius: 8px;
+          border: 1px solid var(--accent);
+          text-align: center;
+        }
+        .sidebar-web a {
           color: var(--accent);
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 800;
+          font-size: 9pt;
         }
-        .contact-link a:hover {
-          text-decoration: underline;
+        .skill-category {
+          margin-bottom: 20px;
+        }
+        .skill-category h3 {
+          font-size: 9pt;
+          color: white;
+          border-bottom: none;
+          margin-bottom: 5px;
+        }
+        .skill-list {
+          font-size: 8pt;
+          color: rgba(255,255,255,0.7);
+          line-height: 1.6;
+        }
+
+        .main {
+          width: 70%;
+          padding: 40px;
+          background: white;
+        }
+        header {
+          margin-bottom: 30px;
+        }
+        header h1 {
+          margin: 0;
+          font-size: 28pt;
+          font-weight: 800;
+          color: var(--primary);
+          letter-spacing: -0.025em;
+          line-height: 1.1;
+        }
+        header h2 {
+          margin: 5px 0 0;
+          font-size: 14pt;
+          font-weight: 600;
+          color: var(--secondary);
         }
         .summary {
           margin-bottom: 30px;
           font-style: italic;
           color: var(--text);
-          background: var(--bg-light);
+          background: #f8fafc;
           border-left: 4px solid var(--accent);
-          padding: 15px 20px;
-          border-radius: 8px;
-          line-height: 1.7;
+          padding: 15px;
+          border-radius: 0 8px 8px 0;
+          font-size: 9.5pt;
         }
         section h2 {
-          font-size: 18pt;
-          font-weight: 700;
+          font-size: 14pt;
+          font-weight: 800;
           color: var(--primary);
-          border-bottom: 3px solid var(--accent);
-          padding-bottom: 8px;
-          margin-bottom: 20px;
+          border-bottom: 2px solid var(--border);
+          padding-bottom: 5px;
+          margin: 30px 0 15px 0;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        section h2::before {
-          content: '▸';
-          color: var(--accent);
-          font-size: 24pt;
         }
         .experience-item {
-          margin-bottom: 25px;
-          padding: 15px;
-          background: var(--bg-light);
-          border-radius: 10px;
-          border-left: 4px solid var(--secondary);
+          margin-bottom: 20px;
         }
         .exp-header {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
-          font-weight: 700;
-          font-size: 12pt;
+          margin-bottom: 2px;
+        }
+        .exp-role {
+          font-weight: 800;
+          font-size: 11pt;
           color: var(--primary);
-          margin-bottom: 5px;
         }
         .exp-period {
-          font-size: 9pt;
-          color: var(--accent);
-          font-weight: 600;
-          background: white;
-          padding: 2px 10px;
-          border-radius: 12px;
-          border: 1px solid var(--border);
+          font-size: 8.5pt;
+          font-weight: 700;
+          color: var(--secondary);
+          background: #eef2ff;
+          padding: 2px 8px;
+          border-radius: 4px;
         }
         .exp-company {
-          font-weight: 600;
-          color: var(--secondary);
+          font-weight: 700;
+          color: var(--text-light);
           margin-bottom: 8px;
-          font-size: 10.5pt;
-        }
-        .exp-description {
-          margin: 8px 0;
-          font-weight: 500;
-          line-height: 1.6;
+          font-size: 9.5pt;
         }
         .exp-achievements {
-          margin: 10px 0;
-          padding-left: 20px;
+          margin: 8px 0;
+          padding-left: 15px;
+          font-size: 8.5pt;
         }
         .exp-achievements li {
-          margin-bottom: 5px;
-          line-height: 1.5;
+          margin-bottom: 4px;
         }
         .exp-tech {
-          margin-top: 12px;
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
+          gap: 4px;
+          margin-top: 10px;
         }
         .tech-tag {
-          background: white;
-          color: var(--secondary);
-          padding: 3px 10px;
-          border-radius: 6px;
-          font-size: 8pt;
+          font-size: 7.5pt;
+          background: #f1f5f9;
+          color: #475569;
+          padding: 1px 6px;
+          border-radius: 4px;
+          border: 1px solid var(--border);
+          font-weight: 600;
+        }
+        .project-item {
+          margin-bottom: 15px;
+        }
+        .project-header {
+          display: flex;
+          justify-content: space-between;
           font-weight: 700;
-          border: 1.5px solid var(--accent);
-          text-transform: uppercase;
-          letter-spacing: 0.025em;
         }
-        .skills-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
-        }
-        .skill-category {
-          background: var(--bg-light);
-          padding: 15px;
-          border-radius: 10px;
-          border: 2px solid var(--border);
-        }
-        .skill-category h3 {
-          font-size: 11pt;
-          margin: 0 0 10px;
+        .project-title {
           color: var(--primary);
-          font-weight: 700;
+          font-size: 10pt;
         }
-        .skill-list {
-          font-size: 9pt;
-          color: var(--text);
-          line-height: 1.8;
+        .project-status {
+          font-size: 8pt;
+          color: var(--accent);
         }
-        .skill-item {
-          font-weight: 500;
+        .project-desc {
+          margin: 2px 0 0 0;
+          font-size: 8.5pt;
+          color: var(--text-light);
         }
+
         @media print {
-          body {
-            padding: 0;
-          }
-          .container {
-            padding: 20px;
-            max-width: 100%;
-          }
-          a {
-            color: var(--accent) !important;
-          }
+          .wrapper { height: auto; }
+          .sidebar { min-height: 297mm; }
         }
       </style>
     </head>
     <body>
-      <div class="container">
-        <header>
-          <div class="header-main">
+      <div class="wrapper">
+        <aside class="sidebar">
+          <div class="sidebar-web">
+            <a href="https://guillermo-perez-ruiz-portfolio.vercel.app/" target="_blank">
+              🌐 VIEW LIVE PORTFOLIO
+            </a>
+          </div>
+
+          <section>
+            <h3>Contact</h3>
+            ${contactHTML}
+          </section>
+
+          <section>
+            <h3>Technical Skills</h3>
+            ${skillsHTML}
+          </section>
+
+          <section style="margin-top: auto; font-size: 7pt; opacity: 0.5;">
+            Generated on ${new Date().toLocaleDateString()}
+          </section>
+        </aside>
+
+        <main class="main">
+          <header>
             <h1>${name}</h1>
             <h2>${title}</h2>
-          </div>
-          <div class="header-contact">
-            ${contactHTML}
-          </div>
-        </header>
+          </header>
 
-        <div class="summary">
-          ${description}
-        </div>
-
-        <section>
-          <h2>Professional Experience</h2>
-          ${experienceHTML}
-        </section>
-
-        <section style="page-break-before: auto;">
-          <h2>Skills & Expertise</h2>
-          <div class="skills-grid">
-            ${skillsHTML}
+          <div class="summary">
+            ${description}
           </div>
-        </section>
+
+          <section>
+            <h2>Professional Experience</h2>
+            ${experienceHTML}
+          </section>
+
+          <section>
+            <h2>Selected Projects</h2>
+            ${projectsHTML}
+          </section>
+        </main>
       </div>
     </body>
     </html>
