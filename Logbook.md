@@ -36,8 +36,6 @@
 
 ## 🔄 Autonomous Execution Protocol (2026-02-03)
 
-<<<<<<< HEAD
-
 - **E2E Testing with Playwright ([#13]):** Established a comprehensive end-to-end testing suite to ensure site stability and prevent regressions.
   - Installed and configured `@playwright/test` for Chromium, Firefox, Webkit, and mobile viewports.
   - Implemented core test cases:
@@ -49,7 +47,8 @@
   - Configured GitHub Actions workflow (`playwright.yml`) for automated testing on push and PR.
   - Updated `.gitignore` to exclude test artifacts.
   - Verified all 35 test permutations locally.
-  - # Created `feature/playwright-e2e-issue-13`.
+  - Created `feature/playwright-e2e-issue-13`.
+
 - **Accessibility (A11y) Compliance Refinement ([#10]):** Enhanced the existing accessibility foundation with advanced features for full WCAG 2.1 AA compliance.
   - Implemented robust focus trapping for `CVModal` and `Experience` detail modals, ensuring focus stays within the active dialog.
   - Added background scroll prevention (`overflow: hidden`) when modals are open.
@@ -59,7 +58,6 @@
   - Updated `metadata/a11y-improvements.md` with detailed technical documentation.
   - Validated build success and performed manual keyboard navigation audit.
   - Updated branch `feature/a11y-compliance` and PR #28.
-    > > > > > > > master
 
 - **Functional Contact API Integration ([#16]):** Implemented a fully functional contact form with serverless EmailJS integration, eliminating the need for a backend server while maintaining enterprise-grade reliability.
   - Integrated `@emailjs/browser` for zero-infrastructure email delivery.
@@ -110,6 +108,22 @@
     - Prettier and ESLint passed.
   - **Evidence:** Screenshot committed to `metadata/screenshots/issue-42-projects-cls-skeleton.jpg`.
   - Created `fix/projects-cls-skeleton-42` and PR #68.
+
+- **PDF.js Worker Local Bundle ([#43]):** Migrated PDF.js worker from external unpkg CDN to local bundle for improved reliability and offline support.
+  - **Root Cause:** CVModal used unpkg CDN for PDF.js worker (`//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`), creating dependency on external service availability and potential CORS/network issues.
+  - **Implementation:**
+    - Installed `vite-plugin-static-copy@3.2.0` to automate worker bundling during Vite build.
+    - Configured Vite to copy `pdf.worker.min.mjs` from `node_modules/pdfjs-dist/build/` to `dist/` root.
+    - Updated `CVModal.tsx` to use local worker path: `/pdf.worker.min.mjs`.
+    - Removed external CDN dependency entirely.
+  - **Testing:**
+    - Build validated: Worker successfully copied to `dist/` (1.04 MB).
+    - Dev server tested: PDF modal renders correctly on `localhost:3000`.
+    - Console check: No errors or warnings.
+    - Visual validation: Screenshot captured showing functional PDF preview with page navigation.
+    - Unit tests: 23/23 passing.
+  - **Evidence:** Screenshot committed to `metadata/screenshots/issue-43-pdf-modal-working.jpg`.
+  - Created `fix/pdf-worker-local-43` and PR #71.
 
 ## 🔄 Maintenance (2026-02-03)
 
