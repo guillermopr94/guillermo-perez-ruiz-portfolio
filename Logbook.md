@@ -35,9 +35,29 @@
 
 - **Premium Page Transitions ([#6]):** Implemented sophisticated Framer Motion animations throughout the portfolio. Created reusable `AnimatedSection.tsx` component with multiple animation variants (fadeIn, slideUp, slideLeft, slideRight, scale, stagger). Enhanced Hero section with staggered entrance animations, animated gradient text, pulsing availability badge, and 3D-like code window with hover effects. Upgraded Navbar with slide-down entrance, smooth link hover effects, and animated mobile menu. Improved Footer with staggered social icon animations and pulsing heart icon. Added page-level fade-in transition in App.tsx. All animations use custom cubic-bezier easing curves for premium feel. Build validated successfully (371.39 kB JS, gzip: 115.69 kB). Visual audit confirmed smooth transitions across all sections. Created `feature/premium-page-transitions`.
 
+## 🔄 Autonomous Execution Protocol (2026-02-03)
+
+- **E2E Testing with Playwright ([#13]):** Established a comprehensive end-to-end testing suite to ensure site stability and prevent regressions.
+  - Installed and configured `@playwright/test` for Chromium, Firefox, Webkit, and mobile viewports.
+  - Implemented core test cases:
+    - **Navigation:** Validated section scrolling, URL hashing, and "Scroll to Top" logic.
+    - **Modals:** Verified the high-fidelity CV Preview modal opens and closes correctly.
+    - **Responsiveness:** Automated checks for mobile menu functionality on simulated Pixel 5.
+    - **Forms:** Implemented validation checks for the contact form.
+  - Added `test:e2e` and `test:e2e:ui` scripts to `package.json`.
+  - Configured GitHub Actions workflow (`playwright.yml`) for automated testing on push and PR.
+  - Updated `.gitignore` to exclude test artifacts.
+  - Verified all 35 test permutations locally.
+  - Created `feature/playwright-e2e-issue-13`.
+
+## 🔄 Maintenance (2026-02-03)
+
+- **PR Maintenance Protocol:** Executed PMP for Portfolio. Verified PR #28 and PR #29. Both are synchronized with `master` and build successfully. No conflicts found. Notified Guillermo via Telegram.
+
+- **Strategic Planning & Technical Audit (SPTA):** Executed a deep dive audit of the Portfolio project. Analyzed codebase architecture (React 19 + Vite), UX flow, and technical debt. Identified 4 high-impact opportunities for product and technical growth. Created 4 new GitHub issues: #30 (Project Technical Deep Dives), #31 (Interactive Architecture Diagrams), #32 (Dark/Light Mode Toggle), and #33 (Vitest Setup). Notified Guillermo via Telegram with the strategic summary.
+
 ### 🚀 Pull Requests
 
-- PR #29: feat: Automated PDF Resume Generation Pipeline (Pending Review).
 - PR #28: feat(a11y): Implement WCAG 2.1 AA Accessibility Compliance (Pending Review).
 - PR #27: feat: premium CV preview modal (Pending Review).
 - PR #25: feat: Image Optimization & WebP Migration (Pending Review).
