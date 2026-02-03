@@ -50,6 +50,20 @@
   - Verified all 35 test permutations locally.
   - Created `feature/playwright-e2e-issue-13`.
 
+- **Functional Contact API Integration ([#16]):** Implemented a fully functional contact form with serverless EmailJS integration, eliminating the need for a backend server while maintaining enterprise-grade reliability.
+  - Integrated `@emailjs/browser` for zero-infrastructure email delivery.
+  - Implemented comprehensive client-side validation (required fields, email format).
+  - Built robust state management for loading, success, and error states.
+  - Added animated success/error feedback using Framer Motion with auto-dismiss (5s).
+  - Integrated honeypot anti-spam protection to prevent bot submissions.
+  - Created detailed setup documentation (`EMAILJS_SETUP.md`) with step-by-step EmailJS configuration guide.
+  - Updated `README.md` with environment variable setup and local development instructions.
+  - Added visual evidence screenshot for error state validation.
+  - Form fields disable during submission to prevent duplicate sends.
+  - Error messages provide helpful guidance when EmailJS is misconfigured.
+  - Validated error handling, loading states, and build success.
+  - Created `feature/contact-api` and PR #35.
+
 ## 🔄 Maintenance (2026-02-03)
 
 - **PR Maintenance Protocol (Run 2):** Re-executed PMP for Portfolio. Verified PR #28, PR #29, and PR #34. All are synchronized with `master` and build successfully locally. PR #34 (E2E Tests) validated locally (35/35 tests passing). No conflicts found. Notified Guillermo via Telegram.
@@ -58,6 +72,7 @@
 
 ### 🚀 Pull Requests
 
+- PR #35: feat: Functional Contact API Integration (Pending Review).
 - PR #28: feat(a11y): Implement WCAG 2.1 AA Accessibility Compliance (Pending Review).
 - PR #27: feat: premium CV preview modal (Pending Review).
 - PR #25: feat: Image Optimization & WebP Migration (Pending Review).
