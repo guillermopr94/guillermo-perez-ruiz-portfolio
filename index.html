@@ -67,6 +67,17 @@
         visibility: hidden;
       }
     </style>
+    <script>
+      // Fallback: Remove loader after 8 seconds if React fails to hydrate
+      setTimeout(function() {
+        var loader = document.getElementById('initial-loader');
+        if (loader && !loader.classList.contains('fade-out')) {
+          console.warn('Loader removal fallback triggered');
+          loader.classList.add('fade-out');
+          setTimeout(function() { loader.remove(); }, 500);
+        }
+      }, 8000);
+    </script>
 </head>
   <body class="bg-slate-950 text-slate-200 antialiased selection:bg-accent selection:text-slate-900">
     <div id="initial-loader">
