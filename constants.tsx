@@ -77,7 +77,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     id: 'mahle',
     role: 'Tech Lead (Hands-On) / Senior Full-Stack Engineer',
     company: 'MAHLE SmartBike Systems',
-    period: '2021 – Present',
+    period: '2023 – Present',
     location: 'Remote',
     description:
       'Technical owner of the digital ecosystem and internal systems, leading a team of 4 Full-Stack engineers. Orchestrated the complete transformation of a high-traffic legacy platform used by thousands of global users.',
