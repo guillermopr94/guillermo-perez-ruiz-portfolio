@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import {
   ExperienceItem,
+  EducationItem,
   ProjectItem,
   SkillCategory,
   SocialLink,
@@ -42,8 +43,24 @@ export const HERO_DATA = {
   title: 'Tech Lead (Hands-On) / Senior Full-Stack Engineer',
   tagline: 'Leading from the code. Architecting scalable solutions.',
   description:
-    'Senior Engineer & Tech Lead with over 7 years of experience in platform modernization, scalable cloud architectures, and advanced automation. I act as a player-coach, bridging the gap between product strategy and engineering execution through direct implementation of high-impact changes.',
+    '7+ years transforming legacy systems into modern, cloud-native platforms. I lead by doing—architecting AWS infrastructure, modernizing React codebases, and shipping production-critical features while mentoring engineering teams. Proven track record at enterprise scale (Inditex, KBC Bank) and high-growth startups.',
 };
+
+export const EDUCATION_DATA: EducationItem[] = [
+  {
+    id: 'usal',
+    degree: 'B.Sc. Computer Engineering',
+    institution: 'Universidad de Salamanca (USAL)',
+    period: '2012 – 2018',
+    location: 'Salamanca, Spain',
+    description:
+      'Official university degree in Computer Engineering with focus on software development, algorithms, and systems architecture.',
+    achievements: [
+      'Final Degree Project: Android app for yoga and mindfulness practice with expert-curated content',
+      'Published to Google Play Store with Laravel-based admin dashboard',
+    ],
+  },
+];
 
 export const MANIFESTO_DATA = [
   {
@@ -75,65 +92,48 @@ export const MANIFESTO_DATA = [
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: 'mahle',
-    role: 'Tech Lead (Hands-On) / Senior Full-Stack Engineer',
+    role: 'Tech Lead / Senior Full-Stack Engineer',
     company: 'MAHLE SmartBike Systems',
     period: '2023 – Present',
     location: 'Remote',
     description:
-      'Technical owner of the digital ecosystem and internal systems, leading a team of 4 Full-Stack engineers. Orchestrated the complete transformation of a high-traffic legacy platform used by thousands of global users.',
+      'Leading a team of 4 engineers. Full ownership of digital platform serving thousands of global users. Drove complete legacy-to-modern transformation.',
     achievements: [
-      'Technical Leadership & Strategy: Managed team workflows, led technical decision-making, and aligned product requirements with architectural scalability.',
-      'Legacy Modernization: Transformed a monolithic React/Express application with severe technical debt (no tests, no clear architecture) into a modern, micro-service ready system.',
-      'Cloud Infrastructure: Fully dockerized the environment and migrated all services to AWS ECS (Fargate) with auto-scaling, ALB, and secure IAM policies.',
-      'Frontend Orchestration: Migrated web frontend to S3 + CloudFront, optimizing global delivery, reducing costs and implementing custom WAF rules.',
-      'Advanced CI/CD & Quality: Engineered automated pipelines with branch synchronization, release blocking mechanisms, and security gates using Snyk and SonarQube.',
-      'React Evolution: Executed a zero-downtime progressive migration from Class Components to Hooks and TypeScript, improving development velocity and type safety.',
-      'Data Layer Decoupling: Optimized storage by separating raw location data to S3, session management to Redis, and volatile configurations to MongoDB.',
-      'Electron & Low-Level Hardware: Built and maintain an Electron desktop app for EOL manufacturing, integrating low-level CAN bus/UDS protocols for bike diagnostics.',
-      'Observability & Monitoring: Implemented comprehensive monitoring with Grafana dashboards, CloudWatch alarms and health-check systems.',
+      'Migrated monolithic React/Express to AWS ECS (Fargate) with auto-scaling, reducing operational costs by 40%',
+      'Zero-downtime migration from Class Components → Hooks + TypeScript across 200+ components',
+      'Built Electron desktop app for manufacturing EOL with CAN bus/UDS hardware integration',
+      'Implemented CI/CD with automated quality gates (Snyk, SonarQube), blocking releases on security issues',
+      'Decoupled data layer: S3 for geospatial data, Redis for sessions, Secrets Manager for configs',
+      'Established Grafana + CloudWatch observability with proactive alerting',
     ],
     techStack: [
       'React',
-      'Node.js',
-      'AWS (ECS/S3/ALB/Secrets)',
       'TypeScript',
-      'Redis',
+      'Node.js',
+      'AWS (ECS/S3/CloudFront)',
       'Docker',
       'Electron',
-      'CAN bus',
-      'UDS',
+      'Redis',
       'Grafana',
     ],
     details: [
       {
-        title: 'Architecture Modernization',
+        title: 'Platform Modernization',
         description:
-          'Deconstructed a monolithic React/Express app into a clean, modular architecture. Implemented functional components and hooks while maintaining 24/7 service availability.',
+          'Transformed legacy monolith into modular, testable architecture while maintaining 24/7 availability.',
         icon: 'Layers',
       },
       {
-        title: 'Cloud & DevOps Excellence',
+        title: 'Cloud Infrastructure',
         description:
-          'Orchestrated the migration to AWS ECS Fargate. Built complex GitHub Actions pipelines featuring branch auto-sync, release locks, and automated deployment gates.',
-        icon: 'Workflow',
+          'Designed and deployed AWS infrastructure: ECS Fargate, ALB, S3, CloudFront, Secrets Manager.',
+        icon: 'Cloud',
       },
       {
-        title: 'Hardware & Desktop Apps',
+        title: 'Hardware Integration',
         description:
-          'Developed an Electron-based manufacturing tool for end-of-line bike registration. Integrated CAN bus/UDS protocols, allowing non-dev teams to load firmware and configurations.',
+          'Built Electron app interfacing with CAN bus/UDS protocols for bike diagnostics and firmware loading.',
         icon: 'Cpu',
-      },
-      {
-        title: 'High-Volume Data Handling',
-        description:
-          'Redesigned data storage strategy: offloaded multi-GB geospatial logs to S3, moved user sessions to Redis, and migrated sensitive configs to AWS Secrets Manager.',
-        icon: 'Database',
-      },
-      {
-        title: 'Monitoring & Reliability',
-        description:
-          'Established comprehensive observability using Grafana and CloudWatch. Configured intelligent alerts to detect platform anomalies before they impact end-users.',
-        icon: 'Activity',
       },
     ],
   },
@@ -144,13 +144,13 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     period: '2020 – 2023',
     location: 'Remote',
     description:
-      "Core member of a cross-functional enablement team defining software quality and DevOps standards for Inditex's global landscape (thousands of repositories).",
+      "Core member of enablement team defining quality and DevOps standards for Inditex's global landscape (thousands of repositories).",
     achievements: [
-      'Enterprise Automation: Developed mass-analysis scripts to audit thousands of repositories, evaluating technical health across different departments.',
-      "Application Discovery Platform: Headed the development of 'Yellow Pages' (React/Spring Boot), a centralized platform used company-wide to discover and manage services.",
-      'Quality Standardization: Enforced quality gates (SonarQube, Jacoco) and unit test thresholds. Managed the global migration from Bamboo to GitHub Actions.',
-      'Distributed Systems: Integrated real-time data synchronization using Kafka and implemented dedicated search engines for high-performance service discovery.',
-      'Technical Auditing & Mentoring: Conducted periodic audits to ensure compliance with quality standards and provided training on testing and pipeline configuration.',
+      'Built mass-analysis tools auditing 5,000+ repositories for technical health scoring',
+      'Led development of enterprise "Yellow Pages" platform (React/Spring Boot) for service discovery',
+      'Drove company-wide migration from Bamboo to GitHub Actions',
+      'Enforced SonarQube quality gates and Jacoco coverage thresholds at enterprise scale',
+      'Integrated Kafka for real-time service registry synchronization',
     ],
     techStack: [
       'React',
@@ -160,72 +160,55 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       'Grafana',
       'Go',
       'SonarQube',
-      'Snyk',
-      'Jacoco',
     ],
     details: [
       {
-        title: 'Global Quality Oversight',
+        title: 'Enterprise Quality',
         description:
-          'Defined and rolled out quality standards for thousands of repositories at Inditex. Implemented SonarQube quality gates and Jacoco coverage analysis at scale.',
+          'Rolled out quality standards across thousands of Inditex repositories with automated enforcement.',
         icon: 'ShieldCheck',
       },
       {
         title: 'Platform Engineering',
         description:
-          "Built a centralized 'Yellow Pages' for application discovery. Used Spring Boot, React, and Kafka to keep the service map synchronized across the organization.",
+          'Built centralized service discovery platform with real-time Kafka synchronization.',
         icon: 'Search',
-      },
-      {
-        title: 'Business Intelligence',
-        description:
-          'Developed a scoring system in Grafana to visualize the technical health of different areas, helping leadership prioritize risk-based technical improvements.',
-        icon: 'BarChart3',
       },
     ],
   },
   {
     id: 'cognizant',
     role: 'Full-Stack Programmer Analyst',
-    company: 'Cognizant Technology Solutions',
+    company: 'Cognizant (Client: KBC Bank)',
     period: '2018 – 2020',
-    location: 'International / Valladolid',
+    location: 'Valladolid / International',
     description:
-      'Full-stack development for KBC Bank (Belgium) in a high-demand microservices environment, working in 100% English-speaking international squads.',
+      'Full-stack development for KBC Bank (Belgium) in high-criticality banking environment. 100% English-speaking multicultural team.',
     achievements: [
-      'Digital Banking Evolution: Developed and modernized banking flows, migrating legacy AngularJS components to modern Angular 4+.',
-      'Microservices Architecture: Designed and implemented high-criticality financial microservices from scratch using Spring Boot and Scala.',
-      'Engineering Excellence: Acted as a technical reference within the squad, conducting rigorous code reviews and implementing SonarQube standards.',
-      'Agile Delivery: Operated within complex Scrum/SAFe frameworks, delivering high-integrity transactional features to thousands of bank customers.',
-      'International Operations: Collaborated daily with distributed teams in Belgium, India, and the Czech Republic in a highly disciplined environment.',
+      'Developed secure financial microservices handling thousands of daily transactions',
+      'Led AngularJS → Angular 4+ migration for banking dashboards',
+      'Served as technical reference: code reviews, SonarQube standards, architectural decisions',
+      'Delivered within SAFe framework across distributed teams (Belgium, India, Czech Republic)',
     ],
     techStack: [
       'Angular',
       'Spring Boot',
       'Microservices',
-      'Jenkins',
-      'Scrum',
       'Scala',
+      'Jenkins',
       'AWS',
-      'SonarQube',
     ],
     details: [
       {
-        title: 'Financial Microservices',
+        title: 'Financial Systems',
         description:
-          'Developed secure and scalable transactional systems for KBC Bank. Focused on backend integrity using Spring Boot and microservices architecture.',
+          "Built secure transactional microservices for one of Belgium's largest banks.",
         icon: 'Lock',
       },
       {
-        title: 'Modern Frontend Migration',
+        title: 'Global Collaboration',
         description:
-          'Led the transition of complex banking dashboards from AngularJS to modern Angular, improving performance and maintainability.',
-        icon: 'Code',
-      },
-      {
-        title: 'Global Squad Dynamics',
-        description:
-          'Thrived in a multicultural, 100% English-speaking environment. Mastered Agile processes and collaborative software development at an enterprise scale.',
+          'Thrived in multicultural environment with teams across 4 countries.',
         icon: 'Globe',
       },
     ],
