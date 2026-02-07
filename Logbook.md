@@ -1,5 +1,18 @@
 ## 📓 Portfolio Project Logbook
 
+## 🔄 Autonomous Execution Protocol (2026-02-04)
+
+- **Global Loading State ([#48]):** Implemented a high-fidelity global loading state to eliminate Flash of Unstyled Content (FOUC).
+  - Added a minimalist dark theme loader (slate-950/sky-400) directly to `index.html` via inline CSS.
+  - Developed removal logic in `App.tsx` using `useEffect` with a smooth fade-out transition.
+  - Ensures professional perceived performance from the first millisecond of page load.
+  - Build validated successfully. Created PR #73.
+- **React Error Boundaries ([#47]):** Implemented robust error handling to prevent cascading failures.
+  - Created `ErrorBoundary` component to capture and log rendering errors.
+  - Wrapped critical sections (Hero, Experience, Projects, etc.) for granular failure isolation.
+  - Improved application resilience and UX during unexpected runtime errors.
+  - Created PR #72.
+
 ## 🔍 Audit & Improvement (2026-02-02)
 
 ### ✅ Done

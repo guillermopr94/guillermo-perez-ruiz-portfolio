@@ -24,19 +24,68 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "framer-motion": "https://esm.sh/framer-motion@^12.29.2"
-  }
-}
-</script>
+    <style>
+      #initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #020617; /* bg-slate-950 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out, visibility 0.5s;
+      }
+      .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(148, 163, 184, 0.1);
+        border-top-color: #38bdf8; /* sky-400 */
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      .loader-text {
+        color: #94a3b8;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      #initial-loader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+    <script>
+      // Fallback: Remove loader after 8 seconds if React fails to hydrate
+      setTimeout(function() {
+        var loader = document.getElementById('initial-loader');
+        if (loader && !loader.classList.contains('fade-out')) {
+          console.warn('Loader removal fallback triggered');
+          loader.classList.add('fade-out');
+          setTimeout(function() { loader.remove(); }, 500);
+        }
+      }, 8000);
+    </script>
 </head>
   <body class="bg-slate-950 text-slate-200 antialiased selection:bg-accent selection:text-slate-900">
+    <div id="initial-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Initializing Architecture...</div>
+      </div>
+    </div>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

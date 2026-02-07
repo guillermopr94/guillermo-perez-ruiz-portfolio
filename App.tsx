@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,6 +11,20 @@ import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
+  useEffect(() => {
+    const loader = document.getElementById('initial-loader');
+    if (loader) {
+      console.log('App mounted, fading out loader');
+      loader.classList.add('fade-out');
+      // Completely remove from DOM after transition
+      const timeout = setTimeout(() => {
+        loader.remove();
+        console.log('Loader removed from DOM');
+      }, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
   return (
     <ErrorBoundary name="App">
       <motion.div
