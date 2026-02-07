@@ -19,6 +19,16 @@ export interface ExperienceItem {
   details?: Milestone[];
 }
 
+export interface EducationItem {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  location: string;
+  description: string;
+  achievements?: string[];
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
